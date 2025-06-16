@@ -1,0 +1,9 @@
+# Allow all friendly crawlers full access
+User-agent: *
+Disallow:
+
+# Disallow crawlers from accessing Next.js-specific build/data folders
+Disallow: /_next/
+
+# Point crawlers to the XML sitemap
+Sitemap: https://maxintegrations.net/sitemap.xml
