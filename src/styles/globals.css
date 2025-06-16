@@ -117,7 +117,9 @@
 }
 
 .animate-max-height {
-  animation: max-height 0.7s ease-in-out;
+  animation: max-height 0.3s ease-in-out;
+  overflow-y: hidden;
+  padding-bottom: 0.5rem;
 }
 
 @keyframes max-height {
