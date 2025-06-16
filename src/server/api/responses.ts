@@ -1,40 +1,40 @@
-export const QueryResponse = ({
-  success,
-  message,
-  data,
-  error,
+export const QueryResponse = <T, V>({
+	success,
+	message,
+	data,
+	error,
 }: {
-  success: boolean;
-  message: string;
-  data: any;
-  error?: any;
+	success: boolean;
+	message: string;
+	data: T;
+	error?: V;
 }) => {
-  return {
-    success,
-    message,
-    data,
-    error,
-  };
+	return {
+		success,
+		message,
+		data,
+		error,
+	};
 };
 
-export const MutationResponse = ({
-  success,
-  message,
-  data,
-  error,
-  input,
+export const MutationResponse = <T, U, V>({
+	success,
+	message,
+	data,
+	error,
+	input,
 }: {
-  success: boolean;
-  message: string;
-  data: any;
-  input: any;
-  error?: any;
+	success: boolean;
+	message: string;
+	data: T;
+	input: U;
+	error?: V;
 }) => {
-  return {
-    success,
-    message,
-    data,
-    input,
-    error,
-  };
+	return {
+		success,
+		message,
+		data,
+		input,
+		error,
+	};
 };

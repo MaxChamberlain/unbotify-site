@@ -16,7 +16,7 @@ export default function Footer() {
               From custom web apps to infrastructure configuration, Shopify themes to custom analytics on your users,
               we've got you covered.
             </p>
-            <div className="flex space-x-4 pt-2"></div>
+            <div className="flex space-x-4 pt-2" />
           </div>
 
           <div>

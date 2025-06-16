@@ -1,8 +1,8 @@
-import { createCallerFactory, createTRPCRouter } from '@/server/api/trpc';
-import { emailRouter } from './routers/email.router';
+import { createCallerFactory, createTRPCRouter } from "@/server/api/trpc";
+import { emailRouter } from "./routers/email.router";
 
 export const appRouter = createTRPCRouter({
-  email: emailRouter,
+	email: emailRouter,
 });
 
 export type AppRouter = typeof appRouter;
