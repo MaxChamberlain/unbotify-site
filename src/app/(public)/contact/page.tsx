@@ -32,7 +32,7 @@ export default function ContactPage() {
           Want to get project specifications or pricing? Or just want to ask about one of our services? We&apos;re here
           to get you the best solutions, the fastest.
         </p>
-        <Suspense fallback={<div className="h-[440px] w-full" />}>
+        <Suspense fallback={<div className="h-[432px] w-full" />}>
           <Form />
         </Suspense>
       </div>
