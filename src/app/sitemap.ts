@@ -1,15 +1,6 @@
 import { type MetadataRoute } from "next";
 
-// Assuming a function that fetches all dynamic content slugs
-// e.g., from a headless CMS or database
-async function fetchDynamicContent() {
-  const services = await fetch(".../api/services").then((res) => res.json());
-  const blogPosts = await fetch(".../api/posts").then((res) => res.json());
-  return { services, blogPosts };
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const { services, blogPosts } = await fetchDynamicContent();
   const siteUrl = "https://maxintegrations.net";
 
   const staticUrls: MetadataRoute.Sitemap = [
