@@ -12,50 +12,44 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { services, blogPosts } = await fetchDynamicContent();
   const siteUrl = "https://maxintegrations.net";
 
-  const serviceUrls = services.map((service: any) => ({
-    url: `${siteUrl}/services/${service.slug}`,
-    lastModified: new Date(service.updatedAt),
-    priority: 0.8,
-  }));
-
-  const blogUrls = blogPosts.map((post: any) => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.updatedAt),
-    priority: 0.7,
-  }));
-
-  const staticUrls = [
+  const staticUrls: MetadataRoute.Sitemap = [
     {
       url: `${siteUrl}/`,
       lastModified: new Date(),
       priority: 1,
+      changeFrequency: "weekly",
     },
     {
       url: `${siteUrl}/cloudflare`,
       lastModified: new Date(),
-      priority: 1,
+      priority: 0.8,
+      changeFrequency: "yearly",
     },
     {
       url: `${siteUrl}/shopify`,
       lastModified: new Date(),
-      priority: 1,
+      priority: 0.8,
+      changeFrequency: "yearly",
     },
     {
       url: `${siteUrl}/analytics`,
       lastModified: new Date(),
-      priority: 1,
+      priority: 0.8,
+      changeFrequency: "yearly",
     },
     {
       url: `${siteUrl}/development`,
       lastModified: new Date(),
-      priority: 1,
+      priority: 0.8,
+      changeFrequency: "yearly",
     },
     {
       url: `${siteUrl}/contact`,
       lastModified: new Date(),
-      priority: 1,
+      priority: 0.9,
+      changeFrequency: "yearly",
     },
   ];
 
-  return [...staticUrls, ...serviceUrls, ...blogUrls];
+  return [...staticUrls];
 }
