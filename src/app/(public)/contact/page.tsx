@@ -32,7 +32,7 @@ export default function ContactPage() {
           Want to get project specifications or pricing? Or just want to ask about one of our services? We&apos;re here
           to get you the best solutions, the fastest.
         </p>
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="h-[440px] w-full" />}>
           <Form />
         </Suspense>
       </div>
@@ -98,7 +98,7 @@ const Form = () => {
   }, [type, form.setValue]);
 
   return (
-    <div className="animate-in animate-max-height zoom-in-95 fade-in-0 w-full max-w-2xl duration-700" key="contact">
+    <div className="animate-in zoom-in-95 fade-in-0 w-full max-w-2xl duration-700" key="contact">
       <AnimatePresence mode="popLayout">
         {isSuccess ? (
           <motion.div

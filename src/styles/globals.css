@@ -116,21 +116,6 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-.animate-max-height {
-  animation: max-height 0.3s ease-in-out;
-  overflow-y: hidden;
-  padding-bottom: 0.5rem;
-}
-
-@keyframes max-height {
-  from {
-    max-height: 0;
-  }
-  to {
-    max-height: 500px;
-  }
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50 scroll-smooth;
