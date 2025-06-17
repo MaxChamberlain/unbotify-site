@@ -6,6 +6,7 @@ import { Geist } from "next/font/google";
 import { TRPCReactProvider } from "@/trpc/react";
 import { Toaster } from "sonner";
 import Script from "next/script";
+import { PostHogProvider } from "@/components/post-hog-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -72,10 +73,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${geist.variable}`}>
       <body>
         <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-        <TRPCReactProvider>
-          <Toaster />
-          {children}
-        </TRPCReactProvider>
+        <PostHogProvider>
+          <TRPCReactProvider>
+            <Toaster />
+            {children}
+          </TRPCReactProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
