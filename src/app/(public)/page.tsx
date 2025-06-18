@@ -90,6 +90,7 @@ export default async function Home() {
             <Image src="/images/cost-my-formula-logo.png" width={320} height={52} alt="Cost My Formula Logo" />
             <Image src="/images/jc-max-consulting-logo.png" width={320} height={36} alt="JC Max Consulting Logo" />
             <Image src="/images/shurhold-industries-logo.png" width={320} height={33} alt="Shurhold Industries Logo" />
+            <Image src="/images/dash-logo.png" width={206} height={40} alt="Dash Logo" />
           </div>
         </div>
       </section>
