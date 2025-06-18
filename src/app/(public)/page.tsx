@@ -60,7 +60,7 @@ export default async function Home() {
         </div>
       </section>
       <section className="w-full max-w-7xl !px-0 max-md:hidden">
-        <Link href="/shopify#custom-admin-app">
+        <Link href="/services/shopify#custom-admin-app">
           <Badge
             variant="outline"
             className="fade-in-0 zoom-in-95 group animate-in text-muted-foreground hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
@@ -134,7 +134,7 @@ export default async function Home() {
               ]}
               link={{
                 text: "Optimize your DNS",
-                href: "/cloudflare",
+                href: "/services/cloudflare",
               }}
             />
             <FeatureCard
@@ -161,7 +161,7 @@ export default async function Home() {
               ]}
               link={{
                 text: "Customize your store",
-                href: "/shopify",
+                href: "/services/shopify",
               }}
             />
             <FeatureCard
@@ -188,7 +188,7 @@ export default async function Home() {
               ]}
               link={{
                 text: "Analyze your users",
-                href: "/analytics",
+                href: "/services/analytics",
               }}
             />
             <FeatureCard
@@ -215,7 +215,7 @@ export default async function Home() {
               ]}
               link={{
                 text: "Build your app",
-                href: "/development",
+                href: "/services/development",
               }}
             />
             <div className="w-screen max-w-lg" />

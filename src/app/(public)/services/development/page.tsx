@@ -1,16 +1,35 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Custom Development",
+  title: "Custom Full-Stack Application Development",
   description:
     "Building powerful custom full-stack applications tailored to your business needs. Our custom development services page is launching soon—check back for details!",
   alternates: {
-    canonical: "https://maxintegrations.net/custom-development",
+    canonical: "https://maxintegrations.net/services/development",
   },
   // TODO: Remove this section once the page is live
   robots: {
     index: false,
+  },
+};
+
+const developmentServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Custom Full-Stack Application Development",
+  description:
+    "Bespoke application development from backend to frontend. We build custom APIs, database integrations, and interactive user interfaces tailored to your specific business requirements.",
+  url: "https://maxintegrations.net/services/development",
+  provider: {
+    "@type": "Organization",
+    name: "Max Integrations",
+  },
+  serviceType: "Custom Software Development",
+  areaServed: {
+    "@type": "Country",
+    name: "US",
   },
 };
 
@@ -34,6 +53,11 @@ export default function FullStackDevelopment() {
       <div className="text-muted-foreground mx-auto max-w-2xl pb-16 text-center text-2xl font-bold">
         You&apos;ve reached a feature so new, it doesn&apos;t even have its own page yet! Please check back soon.
       </div>
+      <Script
+        id="development-service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(developmentServiceSchema) }}
+      />
     </div>
   );
 }

@@ -22,10 +22,10 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold tracking-wider text-white uppercase">Services</h3>
             <ul className="mt-4 space-y-3">
-              <FooterLink to="/cloudflare">Cloudflare configuration</FooterLink>
-              <FooterLink to="/shopify">Shopify development</FooterLink>
-              <FooterLink to="/analytics">Enhanced user analytics</FooterLink>
-              <FooterLink to="/development">Custom full stack apps</FooterLink>
+              <FooterLink to="/services/cloudflare">Cloudflare configuration</FooterLink>
+              <FooterLink to="/services/shopify">Shopify development</FooterLink>
+              <FooterLink to="/services/analytics">Enhanced user analytics</FooterLink>
+              <FooterLink to="/services/development">Custom full stack apps</FooterLink>
             </ul>
           </div>
 

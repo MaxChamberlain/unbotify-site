@@ -18,19 +18,19 @@ export function Navbar() {
   const navItems = [
     {
       name: "Cloudflare",
-      link: "/cloudflare",
+      link: "/services/cloudflare",
     },
     {
       name: "Shopify",
-      link: "/shopify",
+      link: "/services/shopify",
     },
     {
       name: "Analytics",
-      link: "/analytics",
+      link: "/services/analytics",
     },
     {
       name: "Full Stack",
-      link: "/development",
+      link: "/services/development",
     },
   ];
 

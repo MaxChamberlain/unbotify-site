@@ -1,44 +1,50 @@
 import { type MetadataRoute } from "next";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = "https://maxintegrations.net";
+const SITE_URL = "https://maxintegrations.net";
 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticUrls: MetadataRoute.Sitemap = [
     {
-      url: `${siteUrl}/`,
+      url: `${SITE_URL}/`,
       lastModified: new Date(),
       priority: 1,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
     },
     {
-      url: `${siteUrl}/cloudflare`,
+      url: `${SITE_URL}/services`,
       lastModified: new Date(),
       priority: 0.8,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
     },
     {
-      url: `${siteUrl}/shopify`,
+      url: `${SITE_URL}/services/cloudflare`,
       lastModified: new Date(),
       priority: 0.8,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
     },
     {
-      url: `${siteUrl}/analytics`,
+      url: `${SITE_URL}/services/shopify`,
       lastModified: new Date(),
       priority: 0.8,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
     },
     {
-      url: `${siteUrl}/development`,
+      url: `${SITE_URL}/services/analytics`,
       lastModified: new Date(),
       priority: 0.8,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
     },
     {
-      url: `${siteUrl}/contact`,
+      url: `${SITE_URL}/services/development`,
+      lastModified: new Date(),
+      priority: 0.8,
+      changeFrequency: "daily",
+    },
+    {
+      url: `${SITE_URL}/contact`,
       lastModified: new Date(),
       priority: 0.9,
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
     },
   ];
 

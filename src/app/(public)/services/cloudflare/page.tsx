@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Expert Cloudflare setup and configuration services. We manage DNS, Shopify integration, and enable powerful security features like WAF, DDoS protection, and rate limiting.",
   alternates: {
-    canonical: "https://maxintegrations.net/cloudflare",
+    canonical: "https://maxintegrations.net/services/cloudflare",
   },
 };
 
@@ -21,7 +21,7 @@ const cloudflareServiceSchema = {
   name: "Cloudflare Configuration & Security",
   description:
     "Professional setup and management of Cloudflare instances, including DNS configuration, Web Application Firewall (WAF), DDoS protection, and rate limiting for all types of websites.",
-  url: "https://maxintegrations.net/cloudflare",
+  url: "https://maxintegrations.net/services/cloudflare",
   provider: {
     "@type": "Organization",
     name: "Max Integrations",
@@ -58,11 +58,11 @@ export default function CloudflareInstanceConfiguration() {
             </div>
             <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-lg text-base duration-700 max-md:px-4 md:text-lg">
               We can set up your Cloudflare instance, whether you&apos;re using{" "}
-              <Link href="/shopify" className="hover:text-primary underline transition-colors">
+              <Link href="/services/shopify" className="hover:text-primary underline transition-colors">
                 Shopify
               </Link>{" "}
               or WordPress, or a even a completely{" "}
-              <Link href="/development" className="hover:text-primary underline transition-colors">
+              <Link href="/services/development" className="hover:text-primary underline transition-colors">
                 custom application
               </Link>
               . It doesn&apos;t matter if you want to transfer a domain, or set up a new one, we can help.

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Expert Shopify development services from Max Integrations. We extend your custom themes, build powerful apps, and optimize your storefront for maximum performance and sales.",
   alternates: {
-    canonical: "https://maxintegrations.net/shopify",
+    canonical: "https://maxintegrations.net/services/shopify",
   },
 };
 
@@ -21,7 +21,7 @@ const shopifyServiceSchema = {
   name: "Shopify Development Services",
   description:
     "Expert Shopify development services including custom theme extensions, private admin apps, and performance optimization to enhance your e-commerce store.",
-  url: "https://maxintegrations.net/shopify",
+  url: "https://maxintegrations.net/services/shopify",
   provider: {
     "@type": "Organization",
     name: "Max Integrations",
