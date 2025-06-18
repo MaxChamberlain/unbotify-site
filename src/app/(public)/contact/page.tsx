@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Form from "./_components/form";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -28,6 +29,40 @@ export default function ContactPage() {
           <Form />
         </Suspense>
       </div>
+      <Script
+        id="contact-page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Max Integrations",
+            url: "https://maxintegrations.net/contact",
+            logo: "https://maxintegrations.net/images/logo.png",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "7132 Bellcove Trl",
+              addressLocality: "Castle Pines",
+              addressRegion: "CO",
+              postalCode: "80108",
+              addressCountry: "US",
+            },
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "customer support",
+              email: "max@maxintegrations.net",
+              areaServed: "US",
+              availableLanguage: ["English"],
+              openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                opens: "07:00",
+                closes: "19:00",
+              },
+            },
+          }),
+        }}
+      />
     </div>
   );
 }
