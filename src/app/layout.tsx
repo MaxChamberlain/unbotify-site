@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     canonical: "https://maxintegrations.net",
   },
   icons: [
-    { rel: "icon", type: "image/x-icon", url: "/favicon.ico" },
     { rel: "icon", type: "image/png", sizes: "32x32", url: "/images/logo-32x32.png" },
     { rel: "icon", type: "image/png", sizes: "16x16", url: "/images/logo-16x16.png" },
     { rel: "apple-touch-icon", sizes: "180x180", url: "/images/apple-touch-icon.png" },
