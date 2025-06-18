@@ -30,7 +30,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       capture_pageview: "history_change",
       capture_pageleave: true,
       capture_exceptions: false,
-      debug: env.NODE_ENV === "development",
+      debug: process.env.NODE_ENV === "development",
     });
   }, []);
 

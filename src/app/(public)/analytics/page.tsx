@@ -3,6 +3,15 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Analytics",
+  description:
+    "Unlock powerful insights with enhanced user analytics. Our advanced analytics services page is under construction. Please check back soon for more information!",
+  alternates: {
+    canonical: "https://maxintegrations.net/analytics",
+  },
+  // TODO: Remove this section once the page is live
+  robots: {
+    index: false,
+  },
 };
 
 export default function EnhancedUserAnalytics() {

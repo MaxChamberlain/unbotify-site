@@ -3,6 +3,15 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Custom Development",
+  description:
+    "Building powerful custom full-stack applications tailored to your business needs. Our custom development services page is launching soon—check back for details!",
+  alternates: {
+    canonical: "https://maxintegrations.net/custom-development",
+  },
+  // TODO: Remove this section once the page is live
+  robots: {
+    index: false,
+  },
 };
 
 export default function FullStackDevelopment() {

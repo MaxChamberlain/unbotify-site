@@ -7,6 +7,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Cloudflare",
+  description:
+    "Expert Cloudflare setup and configuration services. We manage DNS, Shopify integration, and enable powerful security features like WAF, DDoS protection, and rate limiting.",
+  alternates: {
+    canonical: "https://maxintegrations.net/cloudflare",
+  },
 };
 
 export default function CloudflareInstanceConfiguration() {

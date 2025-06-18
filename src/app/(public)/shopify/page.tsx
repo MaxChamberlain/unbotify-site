@@ -7,6 +7,11 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Shopify Development",
+  description:
+    "Expert Shopify development services from Max Integrations. We extend your custom themes, build powerful apps, and optimize your storefront for maximum performance and sales.",
+  alternates: {
+    canonical: "https://maxintegrations.net/shopify",
+  },
 };
 
 export default function ShopifyDevelopment() {

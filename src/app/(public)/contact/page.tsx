@@ -5,6 +5,11 @@ import Form from "./_components/form";
 
 export const metadata: Metadata = {
   title: "Contact",
+  description:
+    "Contact Max Integrations for project specifications, pricing, or questions about our services. We're here to help you find the best engineering solutions to your problems.",
+  alternates: {
+    canonical: "https://maxintegrations.net/contact",
+  },
 };
 
 export default function ContactPage() {

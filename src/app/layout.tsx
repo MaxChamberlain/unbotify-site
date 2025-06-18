@@ -13,24 +13,14 @@ export const metadata: Metadata = {
     default: "Max Integrations",
     template: "Max Integrations - %s",
   },
-  metadataBase: new URL("https://maxintegrations.com"),
+  metadataBase: new URL("https://maxintegrations.net"),
   description:
-    "Manage your custom software, Shopify, and infrastructure projects with the Max Integrations client portal. Track progress, submit requests, and collaborate with our team.",
-  keywords: [
-    "Max Integrations",
-    "custom software",
-    "Shopify development",
-    "Shopify apps",
-    "DNS configuration",
-    "WAF",
-    "application deployment",
-    "client portal",
-    "project management",
-  ],
+    "Max Integrations helps you engineer the solutions you need. We specialize in custom software, Shopify development, and infrastructure projects. Let's build it your way.",
   openGraph: {
-    title: "Software Solutions | Max Integrations",
-    description: "Manage your projects and collaborate with our team.",
-    url: "https://maxintegrations.com",
+    title: "Max Integrations",
+    description:
+      "Max Integrations helps you engineer the solutions you need. We specialize in custom software, Shopify development, and infrastructure projects. Let's build it your way.",
+    url: "https://maxintegrations.net",
     siteName: "Max Integrations",
     images: [
       {
@@ -43,11 +33,33 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Software Solutions | Max Integrations",
-    description: "Manage your projects and collaborate with our team.",
+    title: "Max Integrations",
+    description:
+      "Max Integrations helps you engineer the solutions you need. We specialize in custom software, Shopify development, and infrastructure projects. Let's build it your way.",
     images: ["/images/logo.png"],
   },
-  icons: [{ rel: "icon", url: "/images/logo.png" }],
+  manifest: "/manifest.json",
+  themeColor: "#4f46e5",
+  alternates: {
+    canonical: "https://maxintegrations.net",
+  },
+  icons: [
+    { rel: "icon", url: "/favicon.ico" },
+    { rel: "icon", type: "image/png", sizes: "32x32", url: "/images/logo-32x32.png" },
+    { rel: "icon", type: "image/png", sizes: "16x16", url: "/images/logo-16x16.png" },
+    { rel: "apple-touch-icon", sizes: "180x180", url: "/images/apple-touch-icon.png" },
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 const geist = Geist({
@@ -66,6 +78,15 @@ const organizationSchema = {
     email: "max@maxintegrations.net",
     contactType: "customer service",
   },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "7132 Bellcove Trl",
+    addressLocality: "Castle Pines",
+    addressRegion: "CO",
+    postalCode: "80108",
+    addressCountry: "US",
+  },
+  sameAs: ["https://github.com/Max-Integrations"],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
