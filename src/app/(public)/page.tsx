@@ -6,15 +6,22 @@ import Link from "next/link";
 import FeatureCard from "./_components/feature-card";
 import Rating from "./_components/rating";
 import Testimonials from "./_components/testimonials";
+import type { Metadata } from "next";
+import Script from "next/script";
+import { env } from "@/env";
+export const metadata: Metadata = {
+  title: "Custom Software Engineering Solutions",
+};
 
 export default async function Home() {
+  const rating = await getRating();
   return (
     <div className="flex flex-col items-center gap-20 [&_section]:px-8">
       <section className="flex w-screen max-w-7xl justify-center gap-12 !px-0 pt-32 max-lg:flex-col md:pt-32">
         <div className="flex flex-2 flex-col gap-6 max-lg:text-center">
           <div className="text-5xl md:text-7xl">
             <h1 className="fade-in-0 zoom-in-95 animate-in font-bold duration-700">
-              Find the solutions you&apos;re&nbsp;
+              Engineering the solutions you&apos;re&nbsp;
               <span
                 className="fade-in-0 zoom-in-95 animate-in inline-block pb-1 font-bold duration-700"
                 style={{
@@ -53,13 +60,15 @@ export default async function Home() {
         </div>
       </section>
       <section className="w-full max-w-7xl !px-0 max-md:hidden">
-        <Badge
-          variant="outline"
-          className="fade-in-0 zoom-in-95 group animate-in text-muted-foreground hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
-        >
-          Just added: Custom Shopify admin app development
-          <ChevronRight className="transition-all duration-300 group-hover:translate-x-1" />
-        </Badge>
+        <Link href="/shopify#custom-admin-app">
+          <Badge
+            variant="outline"
+            className="fade-in-0 zoom-in-95 group animate-in text-muted-foreground hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
+          >
+            Just added: Custom Shopify admin app development
+            <ChevronRight className="transition-all duration-300 group-hover:translate-x-1" />
+          </Badge>
+        </Link>
       </section>
       <section className="w-screen gap-6 py-12">
         <div className="fade-in-0 zoom-in-95 animate-in mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
@@ -79,7 +88,7 @@ export default async function Home() {
             <Image src="/images/max-autolytics-logo.png" width={320} height={43} alt="Max Autolytics Logo" />
             <Image src="/images/vitality-logo.avif" width={320} height={31} alt="Vitality Logo" />
             <Image src="/images/cost-my-formula-logo.png" width={320} height={52} alt="Cost My Formula Logo" />
-            <Image src="/images/jc-max-consulting-logo.png" width={320} height={36} alt="Cost My Formula Logo" />
+            <Image src="/images/jc-max-consulting-logo.png" width={320} height={36} alt="JC Max Consulting Logo" />
             <Image src="/images/shurhold-industries-logo.png" width={320} height={33} alt="Shurhold Industries Logo" />
           </div>
         </div>
@@ -98,7 +107,7 @@ export default async function Home() {
               description="Use the full power of Cloudflare's DNS & CDN features — whether you're new, or migrating."
               image={{
                 src: "/images/example-dns.png",
-                alt: "DNS Example",
+                alt: "Example of Cloudflare DNS records",
                 width: 1024,
                 height: 256,
                 offsetX: "6rem",
@@ -133,7 +142,7 @@ export default async function Home() {
               description="Get the most use out of your Shopify store with custom theme development, apps, and more."
               image={{
                 src: "/images/example-shopify.png",
-                alt: "Shopify Example",
+                alt: "Example of a Shopify store",
                 width: 300,
                 height: 256,
                 offsetX: "0rem",
@@ -160,7 +169,7 @@ export default async function Home() {
               description="Understand everything your users do, why it's done, and where they do it."
               image={{
                 src: "/images/example-analytics.png",
-                alt: "Analytics Example",
+                alt: "Example of enhanced user analytics",
                 width: 420,
                 height: 300,
                 offsetX: "-4rem",
@@ -187,7 +196,7 @@ export default async function Home() {
               description="Have your ideas realized with custom full stack apps, built from scratch by our team to your specifications."
               image={{
                 src: "/images/example-full-stack.png",
-                alt: "Full Stack Example",
+                alt: "Example of a custom full stack app",
                 width: 300,
                 height: 256,
                 offsetX: "0rem",
@@ -225,6 +234,71 @@ export default async function Home() {
           <Testimonials />
         </div>
       </section>
+      <Script
+        id="homepage-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Max Integrations",
+            url: "https://maxintegrations.net",
+          }),
+        }}
+      />
+
+      <Script
+        id="rating-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Max Integrations",
+            url: "https://maxintegrations.net",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: rating.ratingValue,
+              reviewCount: rating.reviewCount,
+            },
+          }),
+        }}
+      />
     </div>
   );
+}
+
+async function getRating() {
+  try {
+    const ratings = await fetch("https://api.senja.io/v1/testimonials", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${env.SENJA_API_KEY}`,
+      },
+      next: {
+        revalidate: 3600, // Revalidate every hour
+      },
+    });
+
+    if (!ratings.ok) throw new Error("API call failed");
+
+    const data = await ratings.json();
+    const reviewCount = data.total ?? 0;
+
+    // ** ADD THIS CHECK **
+    if (reviewCount === 0) {
+      return { reviewCount: 0, ratingValue: 0 }; // Return default values
+    }
+
+    const ratingValue = data.testimonials.reduce((acc: number, curr: any) => acc + curr.rating, 0) / reviewCount;
+
+    return {
+      reviewCount,
+      // Format the rating to one decimal place, which is common for schema
+      ratingValue: parseFloat(ratingValue.toFixed(1)),
+    };
+  } catch (error) {
+    console.error("Could not fetch Senja rating:", error);
+    return { reviewCount: 0, ratingValue: 0 };
+  }
 }

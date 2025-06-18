@@ -4,13 +4,33 @@ import { ChevronRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Cloudflare",
+  title: "Cloudflare Configuration & Security Services",
   description:
     "Expert Cloudflare setup and configuration services. We manage DNS, Shopify integration, and enable powerful security features like WAF, DDoS protection, and rate limiting.",
   alternates: {
     canonical: "https://maxintegrations.net/cloudflare",
+  },
+};
+
+const cloudflareServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Cloudflare Configuration & Security",
+  description:
+    "Professional setup and management of Cloudflare instances, including DNS configuration, Web Application Firewall (WAF), DDoS protection, and rate limiting for all types of websites.",
+  url: "https://maxintegrations.net/cloudflare",
+  provider: {
+    "@type": "Organization",
+    name: "Max Integrations",
+    url: "https://maxintegrations.net",
+  },
+  serviceType: "Cloudflare Configuration",
+  areaServed: {
+    "@type": "Country",
+    name: "US",
   },
 };
 
@@ -37,9 +57,15 @@ export default function CloudflareInstanceConfiguration() {
               </h1>
             </div>
             <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-lg text-base duration-700 max-md:px-4 md:text-lg">
-              We can set up your Cloudflare instance, whether you&apos;re using Shopify or WordPress, or a even a
-              completely custom application. It doesn&apos;t matter if you want to transfer a domain, or set up a new
-              one, we can help.
+              We can set up your Cloudflare instance, whether you&apos;re using{" "}
+              <Link href="/shopify" className="hover:text-primary underline transition-colors">
+                Shopify
+              </Link>{" "}
+              or WordPress, or a even a completely{" "}
+              <Link href="/development" className="hover:text-primary underline transition-colors">
+                custom application
+              </Link>
+              . It doesn&apos;t matter if you want to transfer a domain, or set up a new one, we can help.
             </p>
             <div className="fade-in-0 zoom-in-95 animate-in flex w-full duration-700 max-lg:justify-center">
               <Button variant="default" size="lg" className="bg-indigo-500 hover:bg-indigo-400" asChild>
@@ -112,7 +138,7 @@ export default function CloudflareInstanceConfiguration() {
         <div className="fade-in-0 zoom-in-95 slide-in-from-left-12 animate-in border-border flex flex-col gap-4 overflow-hidden rounded-3xl border shadow-lg duration-700 ease-in-out">
           <Image
             src="/images/example-shopify-dns.png"
-            alt="Cloudflare DNS Configuration"
+            alt="Example of DNS records for a Shopify and Cloudflare integration"
             width={1000}
             height={1000}
             className="w-full"
@@ -142,7 +168,7 @@ export default function CloudflareInstanceConfiguration() {
         <div className="fade-in-0 zoom-in-95 slide-in-from-left-12 animate-in border-border flex max-h-72 flex-col gap-4 overflow-hidden rounded-3xl border p-2 shadow-lg duration-700 ease-in-out">
           <Image
             src="/images/example-cloudflare-attack-protection.png"
-            alt="Cloudflare DNS Configuration"
+            alt="A view of the Cloudflare Web Application Firewall (WAF) dashboard"
             width={1000}
             height={1000}
             className="w-full -translate-y-24"
@@ -172,6 +198,13 @@ export default function CloudflareInstanceConfiguration() {
           </div>
         </div>
       </section>
+      <Script
+        id="cloudflare-service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(cloudflareServiceSchema),
+        }}
+      />
     </div>
   );
 }

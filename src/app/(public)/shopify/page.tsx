@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Shopify Development",
@@ -11,6 +12,25 @@ export const metadata: Metadata = {
     "Expert Shopify development services from Max Integrations. We extend your custom themes, build powerful apps, and optimize your storefront for maximum performance and sales.",
   alternates: {
     canonical: "https://maxintegrations.net/shopify",
+  },
+};
+
+const shopifyServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Shopify Development Services",
+  description:
+    "Expert Shopify development services including custom theme extensions, private admin apps, and performance optimization to enhance your e-commerce store.",
+  url: "https://maxintegrations.net/shopify",
+  provider: {
+    "@type": "Organization",
+    name: "Max Integrations",
+    url: "https://maxintegrations.net",
+  },
+  serviceType: "Shopify Development",
+  areaServed: {
+    "@type": "Country",
+    name: "US",
   },
 };
 
@@ -38,8 +58,11 @@ export default function ShopifyDevelopment() {
             </div>
             <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-lg text-base duration-700 max-md:px-4 md:text-lg">
               We can customize your Shopify experience to your liking. Whether you want to add a new feature to your
-              theme, automate your business processes, or even build a completely custom Shopify admin application, we
-              can engineer a solution <b>made for your store</b>.
+              theme, automate your business processes, or even build a completely custom{" "}
+              <Link href="#custom-admin-app" className="hover:text-primary underline transition-colors">
+                Shopify admin application
+              </Link>
+              , we can engineer a solution <strong>made for your store</strong>.
             </p>
             <div className="fade-in-0 zoom-in-95 animate-in flex w-full duration-700 max-lg:justify-center">
               <Button variant="default" size="lg" className="bg-indigo-500 hover:bg-indigo-400" asChild>
@@ -74,13 +97,7 @@ export default function ShopifyDevelopment() {
           </Button>
         </div>
         <div className="fade-in-0 zoom-in-95 slide-in-from-left-12 animate-in border-border flex max-h-64 flex-col gap-4 overflow-hidden rounded-2xl border p-2 shadow-lg duration-700 ease-in-out">
-          <Image
-            src="/images/example-shopify.png"
-            alt="Cloudflare DNS Configuration"
-            width={1000}
-            height={1000}
-            className="w-full"
-          />
+          <Image src="/images/example-shopify.png" alt="Shopify theme" width={1000} height={1000} className="w-full" />
         </div>
       </section>
       <Separator className="w-full" />
@@ -157,6 +174,11 @@ export default function ShopifyDevelopment() {
           </div>
         </div>
       </section>
+      <Script
+        id="shopify-service-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(shopifyServiceSchema) }}
+      />
     </div>
   );
 }
