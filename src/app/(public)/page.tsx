@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const rating = await getRating();
+  const name = "max";
   return (
     <div className="flex flex-col items-center gap-20 [&_section]:px-8">
       <section className="flex w-screen max-w-7xl justify-center gap-12 !px-0 pt-32 max-lg:flex-col md:pt-32">

@@ -139,6 +139,16 @@ export default function Form() {
                         autoComplete="email"
                         {...form.register("email")}
                       />
+                      <Input
+                        label="Website"
+                        placeholder="What's your website?"
+                        required
+                        type="url"
+                        autoComplete="off"
+                        {...form.register("website")}
+                        className="hidden"
+                        tabIndex={-1}
+                      />
                       <Select onValueChange={(value) => form.setValue("type", value)} value={form.watch("type")}>
                         <SelectTrigger label="Type" className="w-full">
                           <SelectValue placeholder="What are you looking for?" />
