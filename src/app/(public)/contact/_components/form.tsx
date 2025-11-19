@@ -45,6 +45,7 @@ export default function Form() {
       type: data.type,
       subType: data.subType,
       message: data.message,
+      website: data.website,
     });
   };
 
@@ -142,7 +143,6 @@ export default function Form() {
                       <Input
                         label="Website"
                         placeholder="What's your website?"
-                        required
                         autoComplete="off"
                         {...form.register("website")}
                         className="hidden"
