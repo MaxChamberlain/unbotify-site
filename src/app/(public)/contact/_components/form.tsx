@@ -143,7 +143,6 @@ export default function Form() {
                         label="Website"
                         placeholder="What's your website?"
                         required
-                        type="url"
                         autoComplete="off"
                         {...form.register("website")}
                         className="hidden"
