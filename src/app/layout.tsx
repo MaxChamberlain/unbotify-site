@@ -101,6 +101,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             gtag('config', 'AW-17260632331');
           `}
         </Script>
+        <Script
+          id="vtag-ai-js"
+          async
+          src="https://r2.leadsy.ai/tag.js"
+          data-pid="1uRkUhvpQqXNIbIaa"
+          data-version="062024"
+        ></Script>
       </head>
       <body>
         <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
