@@ -119,7 +119,7 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full max-w-7xl !px-0 max-md:hidden">
-        <Link href="/discovery-problem">
+        <Link href="/#discovery-problem">
           <Badge
             variant="outline"
             className="fade-in-0 zoom-in-95 group animate-in text-muted-foreground hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
