@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/
 import Link from "next/link";
 import React, { useRef, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -109,6 +110,8 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
     setHovered(idx);
   };
 
+  const pathname = usePathname();
+
   return (
     <div
       onMouseLeave={() => changeHovered(null)}
@@ -117,19 +120,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         className,
       )}
     >
-      <Link
-        className="bg-primary/80 text-background border-primary/80 hover:bg-primary/90 relative rounded-full border px-4 py-2 transition-colors duration-500"
-        href="/services"
-        onMouseEnter={() => changeHovered(null)}
-      >
-        <span className="relative z-20">Our Services</span>
-      </Link>
-      <div className="border-primary/40 -ml-6 flex flex-row items-center justify-center gap-2 rounded-r-full border border-l-0 pl-6">
+      <div className="border-primary/40 flex flex-row items-center justify-center gap-2 rounded-full border">
         {items.map((item, idx) => (
           <Link
             onMouseEnter={() => changeHovered(idx)}
             onClick={onItemClick}
-            className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+            className={cn("relative rounded-full px-4 py-2 text-neutral-600 dark:text-neutral-300", {
+              "bg-primary/80 text-white": pathname === item.link,
+            })}
             key={`link-${idx}`}
             href={item.link}
           >
@@ -219,7 +217,7 @@ export const NavbarLogo = () => {
   return (
     <Link href="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black">
       <Image src="/images/logo.png" alt="logo" width={30} height={30} priority />
-      <span className="font-medium text-black dark:text-white">Max Integrations</span>
+      <span className="font-medium text-black dark:text-white">Unbotify</span>
     </Link>
   );
 };

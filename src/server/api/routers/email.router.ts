@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { CONTACT_US_EMAIL, CONTACT_US_TYPE } from "@/lib/globals";
+import { CONTACT_US_EMAIL } from "@/lib/globals";
 import { TRPCError } from "@trpc/server";
 import { Resend } from "resend";
 import type z from "zod";
@@ -13,31 +13,26 @@ export const emailRouter = createTRPCRouter({
 });
 
 async function sendContactUsEmail({ input }: { input: z.infer<typeof sendContactUsEmailInput> }) {
-  const { name, email, message, type, subType, website } = input;
+  const { name, email, message, website, company, address } = input;
 
   const resend = new Resend(env.RESEND_API_KEY);
 
   let subject;
-  if (website) {
-    subject = `Honeypot trigger on ${website}`;
-  } else if (type && subType) {
-    subject = `${CONTACT_US_TYPE.find((t) => t.key === type)?.name ?? "General Inquiry"} ${subType ? `- ${CONTACT_US_TYPE.find((t) => t.key === type)?.subTypes.find((s) => s.key === subType)?.name ?? "General Inquiry"}` : ""}`;
-  } else if (type) {
-    subject = `${CONTACT_US_TYPE.find((t) => t.key === type)?.name ?? "General Inquiry"}`;
+  if (address) {
+    subject = `Honeypot trigger on ${address}`;
   } else {
-    subject = "General Inquiry";
+    subject = `Unbotify lead: ${name} ${company ? `(${company})` : ""}`;
   }
 
   const { data, error } = await resend.emails.send({
-    from: `Max Integrations Contact Form <${CONTACT_US_EMAIL}>`,
+    from: `Unbotify Contact Form <${CONTACT_US_EMAIL}>`,
     to: CONTACT_US_EMAIL,
     subject: subject,
-    html: `<span>Respond to ${name} &lt;<a href="mailto:${email}">${email}</a>&gt;</span><p>${message}</p>`,
+    replyTo: email,
+    html: `<span>Respond to ${name} &lt;<a href="mailto:${email}">${email}</a>&gt;</span><p>${message}</p><p>Website: ${website}</p><p>Company: ${company}</p>`,
     text: `New lead
 Name: ${name}
 Email: ${email}
-Type: ${type}
-SubType: ${subType}
 Website: ${website}
 Message: ${message}`,
   });

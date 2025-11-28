@@ -10,31 +10,33 @@ import {
   Navbar as NavbarComponent,
   NavbarLogo,
 } from "@/components/ui/resizable-navbar";
-import { SIGN_IN_URL, SIGN_UP_URL } from "@/lib/globals";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Undo2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export function Navbar() {
   const navItems = [
     {
-      name: "Cloudflare",
-      link: "/services/cloudflare",
+      name: "Home",
+      link: "/",
     },
     {
-      name: "Shopify",
-      link: "/services/shopify",
+      name: "The problem",
+      link: "/#discovery-problem",
     },
     {
-      name: "Analytics",
-      link: "/services/analytics",
+      name: "Our solution",
+      link: "/#discovery-solution",
     },
     {
-      name: "Full Stack",
-      link: "/services/development",
+      name: "Contact",
+      link: "/contact",
     },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const pathname = usePathname();
 
   return (
     <NavbarComponent className="fade-in-0 slide-in-from-top-10 animate-in z-[999] duration-700">
@@ -42,13 +44,24 @@ export function Navbar() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          <NavbarButton
-            variant="primary"
-            href="/contact"
-            className="flex items-center justify-center gap-2 rounded-full bg-indigo-500 font-normal text-white"
-          >
-            Get in touch
-          </NavbarButton>
+          {pathname !== "/contact" && (
+            <NavbarButton
+              variant="primary"
+              href="/contact"
+              className="flex items-center justify-center gap-2 rounded-full bg-indigo-500 text-white"
+            >
+              Get in touch <ArrowRight className="size-4" />
+            </NavbarButton>
+          )}
+          {pathname === "/contact" && (
+            <NavbarButton
+              variant="primary"
+              href="/"
+              className="bg-primary/80 flex items-center justify-center gap-2 rounded-full text-white"
+            >
+              Back to home <Undo2 className="size-4" />
+            </NavbarButton>
+          )}
         </div>
       </NavBody>
       <MobileNav>
@@ -68,13 +81,24 @@ export function Navbar() {
             </a>
           ))}
           <div className="flex w-full flex-col gap-4">
-            <NavbarButton
-              variant="primary"
-              href="/contact"
-              className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
-            >
-              Get in touch
-            </NavbarButton>
+            {pathname !== "/contact" && (
+              <NavbarButton
+                variant="primary"
+                href="/contact"
+                className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
+              >
+                Get in touch
+              </NavbarButton>
+            )}
+            {pathname === "/contact" && (
+              <NavbarButton
+                variant="primary"
+                href="/"
+                className="bg-primary flex items-center justify-center gap-2 text-white"
+              >
+                Back to home
+              </NavbarButton>
+            )}
           </div>
         </MobileNavMenu>
       </MobileNav>

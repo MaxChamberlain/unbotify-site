@@ -10,37 +10,37 @@ import { PostHogProvider } from "@/components/post-hog-provider";
 
 export const metadata: Metadata = {
   title: {
-    default: "Max Integrations",
-    template: "Max Integrations - %s",
+    default: "Unbotify",
+    template: "Unbotify - %s",
   },
-  metadataBase: new URL("https://maxintegrations.net"),
+  metadataBase: new URL("https://unbotify.io"),
   description:
-    "Max Integrations helps you engineer the solutions you need. We specialize in custom software, Shopify development, and infrastructure projects. Let's build it your way.",
+    "Unbotify manages your Web Application Firewall and Bot Protection, stopping malicious traffic from touching your site.",
   openGraph: {
-    title: "Max Integrations",
+    title: "Unbotify",
     description:
-      "Max Integrations helps you engineer the solutions you need. We specialize in custom software, Shopify development, and infrastructure projects. Let's build it your way.",
-    url: "https://maxintegrations.net",
-    siteName: "Max Integrations",
+      "Unbotify manages your Web Application Firewall and Bot Protection, stopping malicious traffic from touching your site.",
+    url: "https://unbotify.io",
+    siteName: "Unbotify",
     images: [
       {
         url: "/images/logo.png",
-        width: 288,
-        height: 288,
+        width: 256,
+        height: 256,
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Max Integrations",
+    title: "Unbotify",
     description:
-      "Max Integrations helps you engineer the solutions you need. We specialize in custom software, Shopify development, and infrastructure projects. Let's build it your way.",
+      "Unbotify manages your Web Application Firewall and Bot Protection, stopping malicious traffic from touching your site.",
     images: ["/images/logo.png"],
   },
   manifest: "/manifest.json",
   alternates: {
-    canonical: "https://maxintegrations.net",
+    canonical: "https://unbotify.io",
   },
   icons: [
     { rel: "icon", type: "image/png", sizes: "32x32", url: "/images/logo-32x32.png" },
@@ -68,20 +68,20 @@ const geist = Geist({
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Max Integrations",
-  url: "https://maxintegrations.net",
-  logo: "https://maxintegrations.net/images/logo.png",
+  name: "Unbotify",
+  url: "https://unbotify.io",
+  logo: "https://unbotify.io/images/logo.png",
   contactPoint: {
     "@type": "ContactPoint",
-    email: "max@maxintegrations.net",
-    contactType: "customer service",
+    email: "info@unbotify.io",
+    contactType: "technical support",
   },
   address: {
     "@type": "PostalAddress",
-    streetAddress: "7132 Bellcove Trl",
-    addressLocality: "Castle Pines",
+    streetAddress: "215 Wilcox St",
+    addressLocality: "Castle Rock",
     addressRegion: "CO",
-    postalCode: "80108",
+    postalCode: "80104",
     addressCountry: "US",
   },
   sameAs: ["https://github.com/Max-Integrations"],
@@ -91,26 +91,27 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${geist.variable}`}>
       <head>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-17260632331"></Script>
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'AW-17260632331');
-          `}
+        <Script>
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-538FWKFG');`}
         </Script>
-        <Script
-          id="vtag-ai-js"
-          async
-          src="https://r2.leadsy.ai/tag.js"
-          data-pid="1uRkUhvpQqXNIbIaa"
-          data-version="062024"
-        ></Script>
       </head>
       <body>
         <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-538FWKFG"
+            height="0"
+            width="0"
+            style={{
+              display: "none",
+              visibility: "hidden",
+            }}
+          ></iframe>
+        </noscript>
         <PostHogProvider>
           <TRPCReactProvider>
             <Toaster />

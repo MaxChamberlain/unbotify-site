@@ -6,14 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useMutationToast } from "@/hooks/use-mutation-toast";
-import { CONTACT_US_TYPE } from "@/lib/globals";
 import { cn } from "@/lib/utils";
 import type { MutationResponse } from "@/server/api/responses";
 import { sendContactUsEmailInput } from "@/server/api/schemas/email.schema";
 import { api } from "@/trpc/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
@@ -23,9 +22,6 @@ export default function Form() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isSuccess = searchParams.get("success") === "true";
-
-  const defaultType = searchParams.get("type");
-  const defaultSubType = searchParams.get("subType");
 
   const onSendToast = useMutationToast({
     loading: "Sending email...",
@@ -42,10 +38,10 @@ export default function Form() {
     sendEmail.mutate({
       name: data.name,
       email: data.email,
-      type: data.type,
-      subType: data.subType,
       message: data.message,
       website: data.website,
+      company: data.company,
+      address: data.address,
     });
   };
 
@@ -54,29 +50,10 @@ export default function Form() {
     defaultValues: {
       name: "",
       email: "",
-      type: defaultType ?? "",
-      subType: defaultSubType ?? "",
       message: "",
     },
     mode: "all",
   });
-
-  useEffect(() => {
-    if (defaultType) {
-      form.setValue("type", defaultType);
-    }
-    if (defaultSubType) {
-      form.setValue("subType", defaultSubType);
-    }
-  }, [defaultType, defaultSubType, form.setValue]);
-
-  const type = form.watch("type");
-
-  const subTypes = useMemo(() => {
-    form.setValue("subType", "");
-    if (!type) return [];
-    return CONTACT_US_TYPE.find((t) => t.key === type)?.subTypes || [];
-  }, [type, form.setValue]);
 
   return (
     <div className="animate-in zoom-in-95 fade-in-0 w-full max-w-2xl duration-700" key="contact">
@@ -117,16 +94,13 @@ export default function Form() {
             key="contact"
           >
             <Card className="w-full">
-              <CardHeader>
-                <CardTitle>Get in touch!</CardTitle>
-              </CardHeader>
               <CardContent>
                 <form onSubmit={form.handleSubmit(handleSubmit)}>
                   <div className="grid w-full items-center gap-4">
                     <div className="flex flex-col space-y-4">
                       <Input
                         label="Name"
-                        placeholder="Who are you?"
+                        placeholder="Jane Smith"
                         required
                         type="text"
                         autoComplete="name"
@@ -134,7 +108,7 @@ export default function Form() {
                       />
                       <Input
                         label="Email"
-                        placeholder="What's your email?"
+                        placeholder="jane@example.com"
                         required
                         type="email"
                         autoComplete="email"
@@ -142,48 +116,27 @@ export default function Form() {
                       />
                       <Input
                         label="Website"
-                        placeholder="What's your website?"
-                        autoComplete="off"
+                        placeholder="https://example.com"
                         {...form.register("website")}
+                        autoComplete="website"
+                      />
+                      <Input
+                        label="Company"
+                        placeholder="Example Inc."
+                        {...form.register("company")}
+                        autoComplete="company"
+                      />
+                      <Input
+                        label="Address"
+                        placeholder="123 Main St, Anytown, USA"
+                        autoComplete="off"
+                        {...form.register("address")}
                         className="hidden"
                         tabIndex={-1}
                       />
-                      <Select onValueChange={(value) => form.setValue("type", value)} value={form.watch("type")}>
-                        <SelectTrigger label="Type" className="w-full">
-                          <SelectValue placeholder="What are you looking for?" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {CONTACT_US_TYPE.map((type) => (
-                            <SelectItem key={type.key} value={type.key}>
-                              {type.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <div
-                        className={cn("-mt-4 max-h-0 overflow-y-hidden blur-sm transition-all duration-500", {
-                          "mt-0 max-h-32 blur-none": !!type && subTypes.length > 0,
-                        })}
-                      >
-                        <Select
-                          onValueChange={(value) => form.setValue("subType", value)}
-                          value={form.watch("subType") ?? undefined}
-                        >
-                          <SelectTrigger label="Subtype" className="w-full">
-                            <SelectValue placeholder="What specifically are you looking for?" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {subTypes.map((subType) => (
-                              <SelectItem key={subType.key} value={subType.key}>
-                                {subType.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
                       <Textarea
                         label="Message"
-                        placeholder="What's your message?"
+                        placeholder="My Klaviyo mailing list is being spammed by bots."
                         required
                         {...form.register("message")}
                       />
@@ -193,7 +146,7 @@ export default function Form() {
                         disabled={sendEmail.isPending || !form.formState.isValid}
                       >
                         {sendEmail.isPending && <Loader2 className="size-4 animate-spin text-white" />}
-                        Send
+                        Request service <Send />
                       </Button>
                     </div>
                   </div>

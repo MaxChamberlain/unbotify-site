@@ -18,12 +18,12 @@ export default function ContactPage() {
     <div className="relative pb-32">
       <div className="z-50 mx-auto flex w-screen max-w-7xl flex-col items-center justify-center gap-8 pt-12">
         <Badge className="fade-in-0 zoom-in-95 animate-in !bg-indigo-500/15 !text-indigo-500 duration-700">
-          We&apos;d love to hear from you!
+          We&apos;d love to stop the bots for your store!
         </Badge>
         <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Contact us</h1>
         <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700">
-          Want to get project specifications or pricing? Or just want to ask about one of our services? We&apos;re here
-          to get you the best solutions, the fastest.
+          Looking to stop bots from breaking into your store? We're here to help. Just fill out the form below and we'll
+          get back to you as soon as possible.
         </p>
         <Suspense fallback={<div className="h-[432px] w-full" />}>
           <Form />
@@ -36,21 +36,13 @@ export default function ContactPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "Max Integrations",
-            url: "https://maxintegrations.net/contact",
-            logo: "https://maxintegrations.net/images/logo.png",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "7132 Bellcove Trl",
-              addressLocality: "Castle Pines",
-              addressRegion: "CO",
-              postalCode: "80108",
-              addressCountry: "US",
-            },
+            name: "Unbotify",
+            url: "https://unbotify.io/contact",
+            logo: "https://unbotify.io/images/logo.png",
             contactPoint: {
               "@type": "ContactPoint",
               contactType: "customer support",
-              email: "max@maxintegrations.net",
+              email: "info@unbotify.io",
               areaServed: "US",
               availableLanguage: ["English"],
               openingHoursSpecification: {
