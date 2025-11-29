@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader2, Send } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import posthog from "posthog-js";
 import { useForm } from "react-hook-form";
 import type z from "zod";
 
@@ -35,6 +35,21 @@ export default function Form() {
   const sendEmail = api.email.sendContactUsEmail.useMutation(onSendToast);
 
   const handleSubmit = (data: z.infer<typeof sendContactUsEmailInput>) => {
+    posthog.identify(data.email, {
+      name: data.name,
+      email: data.email,
+      website: data.website,
+      company: data.company,
+      address: data.address,
+    });
+    posthog.capture("contact_us_form_submitted", {
+      name: data.name,
+      email: data.email,
+      website: data.website,
+      company: data.company,
+      address: data.address,
+      message: data.message,
+    });
     sendEmail.mutate({
       name: data.name,
       email: data.email,
