@@ -4,7 +4,7 @@ globs:
 alwaysApply: true
 ---
 
-Never hallucinate an API key. Instead, always use the API key populated in the env object, imported as a named import { env } from the file at src/env.js
+Never hallucinate an API key. Instead, always use the API key populated in the .env file.
 
 # Feature flags
 
