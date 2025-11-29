@@ -1,6 +1,6 @@
 import { type MetadataRoute } from "next";
 
-const SITE_URL = "https://maxintegrations.net";
+const SITE_URL = "https://unbotify.io";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticUrls: MetadataRoute.Sitemap = [
@@ -11,40 +11,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
     },
     {
-      url: `${SITE_URL}/services`,
-      lastModified: new Date(),
-      priority: 0.8,
-      changeFrequency: "daily",
-    },
-    {
-      url: `${SITE_URL}/services/cloudflare`,
-      lastModified: new Date(),
-      priority: 0.8,
-      changeFrequency: "daily",
-    },
-    {
-      url: `${SITE_URL}/services/shopify`,
-      lastModified: new Date(),
-      priority: 0.8,
-      changeFrequency: "daily",
-    },
-    {
-      url: `${SITE_URL}/services/analytics`,
-      lastModified: new Date(),
-      priority: 0.8,
-      changeFrequency: "daily",
-    },
-    {
-      url: `${SITE_URL}/services/development`,
-      lastModified: new Date(),
-      priority: 0.8,
-      changeFrequency: "daily",
-    },
-    {
       url: `${SITE_URL}/contact`,
       lastModified: new Date(),
       priority: 0.9,
-      changeFrequency: "daily",
+      changeFrequency: "monthly",
     },
   ];
 
