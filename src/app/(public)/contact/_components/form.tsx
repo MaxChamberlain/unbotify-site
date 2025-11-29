@@ -49,6 +49,7 @@ export default function Form() {
       company: data.company,
       address: data.address,
       message: data.message,
+      current_rate: 499.0,
     });
     sendEmail.mutate({
       name: data.name,
