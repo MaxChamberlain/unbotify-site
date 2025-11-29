@@ -47,7 +47,9 @@ export default function FeatureCard({ title, description, image, features, link 
           <div className="to-muted-foreground/20 absolute bottom-0 left-0 h-4 w-full bg-gradient-to-b from-transparent opacity-0 transition-all duration-300 group-hover:opacity-100" />
         </div>
         <CardHeader className="gap-6">
-          <CardTitle className="text-2xl">{title}</CardTitle>
+          <CardTitle className="text-2xl">
+            <h3>{title}</h3>
+          </CardTitle>
           <CardDescription className="text-primary text-lg">{description}</CardDescription>
         </CardHeader>
         <CardContent className="pb-0 transition-all duration-300 group-hover:pb-12 max-lg:pb-12">

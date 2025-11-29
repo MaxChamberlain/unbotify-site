@@ -25,6 +25,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import FeatureCard from "./_components/feature-card";
+import type { Metadata } from "next";
 
 interface AttackStep {
   number: number;
@@ -33,6 +34,10 @@ interface AttackStep {
   icon: React.ReactNode;
   color: string;
 }
+
+export const metadata: Metadata = {
+  title: "Shopify Bot Protection & Analytics Shield",
+};
 
 const ATTACK_STEPS: AttackStep[] = [
   {
@@ -82,7 +87,7 @@ export default function Home() {
         <div className="flex flex-2 flex-col gap-6 max-lg:text-center">
           <div className="text-5xl md:text-7xl">
             <h1 className="fade-in-0 zoom-in-95 animate-in font-bold duration-700">
-              Stopping bot traffic
+              Stopping <p className="hidden">Shopify</p> bot traffic
               <br />
               <span
                 className="fade-in-0 zoom-in-95 animate-in inline-block pb-1 font-bold duration-700"
@@ -560,14 +565,23 @@ export default function Home() {
         </div>
       </section>
       <Script
-        id="homepage-schema"
+        id="software-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebSite",
+            "@type": "SoftwareApplication",
             name: "Unbotify",
-            url: "https://unbotify.io",
+            applicationCategory: "SecurityApplication",
+            operatingSystem: "Cloud, Shopify, Next.js, Cloudflare",
+            offers: {
+              "@type": "Offer",
+              price: "249.00",
+              priceCurrency: "USD",
+              priceValidUntil: "2025-12-31",
+            },
+            description:
+              "Middleware to detect and block bot traffic for Next.js and Shopify applications using Cloudflare WAF.",
           }),
         }}
       />

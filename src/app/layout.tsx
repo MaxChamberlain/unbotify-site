@@ -11,7 +11,7 @@ import { PostHogProvider } from "@/components/post-hog-provider";
 export const metadata: Metadata = {
   title: {
     default: "Unbotify",
-    template: "Unbotify - %s",
+    template: "%s | Unbotify",
   },
   metadataBase: new URL("https://unbotify.io"),
   description:
