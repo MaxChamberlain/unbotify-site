@@ -6,4 +6,4 @@ Disallow:
 Disallow: /_next/
 
 # Point crawlers to the XML sitemap
-Sitemap: https://maxintegrations.net/sitemap.xml
+Sitemap: https://unbotify.io/sitemap.xml
