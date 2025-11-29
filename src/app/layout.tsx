@@ -98,6 +98,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-538FWKFG');`}
         </Script>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-17260632331"></Script>
+        <Script>
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'AW-17260632331');`}
+        </Script>
       </head>
       <body>
         <Script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
