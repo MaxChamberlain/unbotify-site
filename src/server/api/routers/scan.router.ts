@@ -100,7 +100,7 @@ async function scanWebsite({ url }: { url: string }) {
   return {
     title: pageTitle,
     description,
-    usesShopify: isUnbotifyDomain ? false : usesShopify,
+    usesShopify: isUnbotifyDomain ? true : usesShopify,
     usesCloudflare: isUnbotifyDomain ? true : usesCloudflare,
     detectedApps,
     isUnbotifyDomain,
