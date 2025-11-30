@@ -301,12 +301,12 @@ export default function Home() {
           </div>
           <Card className="overflow-hidden !pb-0">
             <CardContent className="p-0 !pb-0">
-              <h3 className="px-6 text-base font-bold">The Attack Pattern</h3>
+              <h3 className="px-6 text-base font-bold">The Bot Attack Pattern</h3>
               <div>
                 <div className="px-6 pb-4">
                   <p className="text-sm leading-relaxed">
-                    Unlike "dumb" scrapers that just load a page, these bots execute a complex sequence of events to
-                    simulate high-intent users. This might sound familiar to you:
+                    Unlike "dumb" website scrapers that just load a page, these bots execute a complex sequence of
+                    events to simulate high-intent users. This might sound familiar to you:
                   </p>
                 </div>
                 <div className="max-lg:divide-border pt-4 max-lg:divide-y">
