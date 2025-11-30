@@ -339,8 +339,8 @@ export default function Home() {
                 </div>
                 <div className="border-border mt-8 border-t bg-stone-200 px-8 py-6">
                   <p className="text-xs text-black">
-                    <span className="font-semibold">Pro tip:</span> Understanding these patterns helps you better
-                    protect your business and maintain accurate analytics.
+                    <span className="font-semibold">Why This Matters:</span> Understanding these patterns helps you
+                    better protect your business and maintain accurate analytics.
                   </p>
                 </div>
               </div>
