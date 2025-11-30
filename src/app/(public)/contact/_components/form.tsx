@@ -67,7 +67,6 @@ export default function Form() {
     },
     mode: "all",
   });
-  console.log("errs", form.formState.errors);
   return (
     <div className="animate-in zoom-in-95 fade-in-0 w-full max-w-2xl duration-700" key="contact">
       <AnimatePresence mode="popLayout">
@@ -128,6 +127,21 @@ export default function Form() {
                         type="email"
                         autoComplete="email"
                         {...form.register("email")}
+                        onBlur={() => {
+                          // If website hasn't been touched, autofill it from the email domain.
+                          const website = form.getValues("website");
+                          const email = form.getValues("email");
+                          if (!website) {
+                            // Only run if email is truthy and has an @
+                            const atIdx = email.indexOf("@");
+                            if (atIdx !== -1 && atIdx < email.length - 1) {
+                              const domain = email.slice(atIdx + 1).trim();
+                              if (domain && !website) {
+                                form.setValue("website", domain);
+                              }
+                            }
+                          }
+                        }}
                       />
                       <Input
                         label="Website"
