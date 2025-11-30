@@ -121,7 +121,7 @@ export default function Home() {
           </video>
         </div>
       </section>
-      <section className="w-full max-w-7xl !px-0">
+      <section className="w-full max-w-7xl !px-0 max-md:flex max-md:justify-center">
         <Link href="/contact">
           <Badge
             variant="outline"
