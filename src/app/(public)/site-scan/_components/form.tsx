@@ -29,14 +29,10 @@ const SCAN_STEPS = [
 export default function Form() {
   const router = useRouter();
   const [scanStep, setScanStep] = useState(0);
-
-  // We handle the "Theater" state locally to force the animation to play out
-  // even if the API returns instantly.
   const [showResults, setShowResults] = useState(false);
 
   const scanWebsite = api.scan.scanWebsite.useMutation({
     onSuccess: (data) => {
-      // Don't show immediately, let the animation finish
       setTimeout(() => setShowResults(true), 2000);
       posthog.capture("site_scan_completed", data.data);
     },
@@ -45,8 +41,6 @@ export default function Form() {
   const handleSubmit = (data: z.infer<typeof scanInput>) => {
     setShowResults(false);
     setScanStep(0);
-
-    // Start the visual progress bar
     const stepInterval = setInterval(() => {
       setScanStep((prev) => {
         if (prev >= SCAN_STEPS.length - 1) {
@@ -68,12 +62,11 @@ export default function Form() {
 
   // Derived state for the verdict
   const data = scanWebsite.data?.data;
-  const isVulnerable = data && (data.detectedApps.length > 0 || !data.usesCloudflare);
+  const isVulnerable = data && (data.detectedApps.length > 0 || !data.usesCloudflare || !data.isUnbotifyDomain);
 
   return (
     <div className="mx-auto w-full max-w-2xl">
       <AnimatePresence mode="wait">
-        {/* STATE 1: LOADING (THEATER) */}
         {scanWebsite.isPending || (scanWebsite.isSuccess && !showResults) ? (
           <motion.div
             key="loading"
@@ -93,8 +86,65 @@ export default function Form() {
               </div>
             </Card>
           </motion.div>
+        ) : showResults && data && !data.usesShopify ? (
+          <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
+            <Card
+              className={cn(
+                "gap-0 overflow-hidden border-2 !p-0",
+                isVulnerable ? "border-red-100" : "border-green-100",
+              )}
+            >
+              {/* Verdict Banner */}
+              <div
+                className={cn(
+                  "flex items-center justify-center gap-2 p-3 text-center font-bold tracking-wider text-white uppercase",
+                  isVulnerable ? "bg-yellow-500" : "bg-green-500",
+                )}
+              >
+                {isVulnerable ? (
+                  <>
+                    <AlertTriangle className="size-5" /> Not On Shopify
+                  </>
+                ) : (
+                  <>
+                    <ShieldCheck className="size-5" /> Site Secure
+                  </>
+                )}
+              </div>
+
+              <CardContent className="p-0">
+                <div className="text-muted-foreground flex items-center justify-between border-b bg-slate-100 p-3 text-xs">
+                  <span className="max-w-[300px] truncate font-mono">{form.getValues("url")}</span>
+                  <span className="font-semibold">{data.title.substring(0, 30)}...</span>
+                </div>
+                <div className="space-y-6 p-6">
+                  <div className="grid grid-cols-1 gap-4">
+                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
+                      <Image src="/images/shopify-logo.png" alt="Shopify" width={32} height={32} />
+                      <span className="text-sm font-medium">
+                        {data.usesShopify ? "Shopify Detected" : "You do not use Shopify."}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
+                  <Button
+                    variant="ghost"
+                    className="w-full"
+                    onClick={() => {
+                      setShowResults(false);
+                      setScanStep(0);
+                      scanWebsite.reset();
+                      form.reset();
+                    }}
+                  >
+                    Scan Another
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         ) : showResults && data ? (
-          /* STATE 2: RESULTS (THE RECEIPT) */
           <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
             <Card
               className={cn(
@@ -121,14 +171,11 @@ export default function Form() {
               </div>
 
               <CardContent className="p-0">
-                {/* Site Preview Bar */}
                 <div className="text-muted-foreground flex items-center justify-between border-b bg-slate-100 p-3 text-xs">
                   <span className="max-w-[300px] truncate font-mono">{form.getValues("url")}</span>
                   <span className="font-semibold">{data.title.substring(0, 30)}...</span>
                 </div>
-
                 <div className="space-y-6 p-6">
-                  {/* The Grid: Platform & DNS */}
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
                       <Image src="/images/shopify-logo.png" alt="Shopify" width={32} height={32} />
@@ -137,7 +184,6 @@ export default function Form() {
                       </span>
                     </div>
                     <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
-                      {/* Assuming you have this image, or swap for Lucide 'Cloud' icon */}
                       {data.usesCloudflare ? (
                         <Image src="/images/cloudflare-logo.png" alt="CF" width={32} height={32} />
                       ) : (
@@ -149,9 +195,19 @@ export default function Form() {
                         {data.usesCloudflare ? "Cloudflare WAF" : "No Cloudflare"}
                       </span>
                     </div>
+                    <div className="col-span-2 flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
+                      {data.isUnbotifyDomain ? (
+                        <Image src="/images/logo.png" alt="Unbotify" width={32} height={32} />
+                      ) : (
+                        <div className="flex size-8 items-center justify-center rounded-full bg-slate-200">
+                          <Server className="size-4 text-slate-500" />
+                        </div>
+                      )}
+                      <span className={cn("text-sm font-medium", !data.isUnbotifyDomain && "text-red-600")}>
+                        {data.isUnbotifyDomain ? "You are on Unbotify!" : "You are not on Unbotify."}
+                      </span>
+                    </div>
                   </div>
-
-                  {/* The Smoking Gun: Placebo Apps */}
                   {data.detectedApps.length > 0 ? (
                     <div className="space-y-3 rounded-lg border border-red-100 bg-red-50 p-4">
                       <div className="flex items-center gap-2 font-bold text-red-700">
@@ -180,9 +236,7 @@ export default function Form() {
                     </div>
                   )}
                 </div>
-
-                {/* Footer Actions */}
-                <div className="flex flex-col gap-3 border-t bg-slate-50 p-4 sm:flex-row">
+                <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
                   <Button
                     onClick={() => router.push("/contact?website=" + form.getValues("url"))}
                     className="w-full !bg-indigo-600 shadow-md shadow-indigo-100 hover:!bg-indigo-700"
@@ -191,8 +245,11 @@ export default function Form() {
                   </Button>
                   <Button
                     variant="ghost"
+                    className="w-full"
                     onClick={() => {
                       setShowResults(false);
+                      setScanStep(0);
+                      scanWebsite.reset();
                       form.reset();
                     }}
                   >

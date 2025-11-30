@@ -2,6 +2,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import * as cheerio from "cheerio";
 import { getDnsRecords } from "@/lib/dns";
 import { scanInput } from "../schemas/scan.schema";
+import { env } from "@/env";
 
 const KNOWN_BLOCKERS = [
   { id: "blockify", name: "Blockify", signatures: ["blockify", "blocky"] },
@@ -11,6 +12,8 @@ const KNOWN_BLOCKERS = [
   { id: "easy-lockdown", name: "Easy Lockdown", signatures: ["easy-lockdown", "easylockdown"] },
   { id: "bot-manager", name: "Shopify Bot Manager", signatures: ["bot-manager"] },
 ];
+
+const DOMAINS_ON_UNBOTIFY = env.UNBOTIFY_DOMAINS.split(",");
 
 export const scanRouter = createTRPCRouter({
   scanWebsite: publicProcedure.input(scanInput).mutation(async ({ ctx, input }) => {
@@ -23,6 +26,7 @@ export const scanRouter = createTRPCRouter({
         usesShopify: false,
         usesCloudflare: false,
         detectedApps: [] as string[],
+        isUnbotifyDomain: false,
       },
     };
     try {
@@ -32,6 +36,7 @@ export const scanRouter = createTRPCRouter({
       ret.data.usesShopify = data.usesShopify;
       ret.data.usesCloudflare = data.usesCloudflare;
       ret.data.detectedApps = data.detectedApps || [];
+      ret.data.isUnbotifyDomain = data.isUnbotifyDomain;
     } catch (error) {
       ret.success = false;
       ret.message = "Scan failed";
@@ -72,11 +77,13 @@ async function scanWebsite({ url }: { url: string }) {
       }
     });
   });
+  const isUnbotifyDomain = DOMAINS_ON_UNBOTIFY.some((domain) => properURL.hostname.includes(domain));
   return {
     title: pageTitle,
     description,
     usesShopify,
     usesCloudflare,
     detectedApps,
+    isUnbotifyDomain,
   } as const;
 }

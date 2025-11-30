@@ -13,6 +13,7 @@ export const env = createEnv({
     AUTH_GOOGLE_CLIENT_SECRET: z.string(),
     RESEND_API_KEY: z.string(),
     SENJA_API_KEY: z.string(),
+    UNBOTIFY_DOMAINS: z.string(),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().url(),
@@ -30,6 +31,7 @@ export const env = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     SENJA_API_KEY: process.env.SENJA_API_KEY,
+    UNBOTIFY_DOMAINS: process.env.URLS_ON_UNBOTIFY,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,
