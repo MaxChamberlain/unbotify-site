@@ -114,7 +114,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className="relative flex h-full w-full flex-2 -translate-x-8 flex-col gap-8 opacity-60 max-lg:hidden">
+        <div className="relative flex h-full w-full flex-2 -translate-x-8 flex-col gap-8 opacity-60 max-lg:pointer-events-none max-lg:hidden">
           <video autoPlay muted preload="none" poster="/images/dashboard-preview.jpg" className="absolute inset-0">
             <source src="/videos/hero-blob.mp4" type="video/mp4" />
             Your browser does not support the video tag.
