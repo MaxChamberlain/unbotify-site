@@ -63,6 +63,10 @@ async function scanWebsite({ url }: { url: string }) {
     },
   });
 
+  if (!response.ok) {
+    throw new Error("Failed to scan website");
+  }
+
   const ttfb = Math.round(performance.now() - start);
   const botAccessAllowed = response.status >= 200 && response.status < 300;
   const productsJsonUrl = `${properURL.origin}/products.json`;
