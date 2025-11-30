@@ -123,7 +123,7 @@ export default function Home() {
       </section>
       <section className="-mt-16 flex w-full max-w-7xl justify-center !px-0 md:hidden">
         <Button variant="outline" size="lg" className="w-full max-w-[20rem]" asChild>
-          <Link href="/contact">Join our intelligence network</Link>
+          <Link href="/contact">Secure your store now</Link>
         </Button>
       </section>
       <section className="w-full max-w-7xl !px-0 max-md:hidden">
@@ -132,7 +132,7 @@ export default function Home() {
             variant="outline"
             className="fade-in-0 zoom-in-95 group animate-in hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
           >
-            Join our intelligence network at our pilot rate
+            Secure your store with Unbotify at our pilot rate
             <ChevronRight className="transition-all duration-300 group-hover:translate-x-1" />
           </Badge>
         </Link>
@@ -183,7 +183,7 @@ export default function Home() {
               <div>
                 <div className="px-6 pb-4">
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    The cost of this bot traffic is hidden in your marketing bills, analytics, and ad spend.
+                    Bot traffic affects your marketing bills, analytics, ad spend, and operational overhead.
                   </p>
                 </div>
               </div>
