@@ -27,6 +27,7 @@ export const scanRouter = createTRPCRouter({
         usesCloudflare: false,
         detectedApps: [] as string[],
         isUnbotifyDomain: false,
+        url: input.url,
       },
     };
     try {

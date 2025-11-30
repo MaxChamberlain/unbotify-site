@@ -22,8 +22,10 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold tracking-wider text-white uppercase">Quick Links</h3>
             <ul className="mt-4 space-y-3">
+              <FooterLink to="/">Home</FooterLink>
               <FooterLink to="/#discovery-problem">The problem</FooterLink>
               <FooterLink to="/#discovery-solution">Our solution</FooterLink>
+              <FooterLink to="/site-scan">Scan your ite</FooterLink>
               <FooterLink to="/contact">Apply for pilot program</FooterLink>
             </ul>
           </div>
