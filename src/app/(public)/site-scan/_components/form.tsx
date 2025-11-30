@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,19 +8,31 @@ import { scanInput } from "@/server/api/schemas/scan.schema";
 import { api } from "@/trpc/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader2, ScanLine, ShieldCheck, AlertTriangle, XCircle, CheckCircle2, ArrowRight, Server } from "lucide-react";
+import {
+  Loader2,
+  ScanLine,
+  ShieldCheck,
+  AlertTriangle,
+  XCircle,
+  CheckCircle2,
+  ArrowRight,
+  Server,
+  Lock,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import posthog from "posthog-js";
 import { useForm } from "react-hook-form";
 import type z from "zod";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 // The "Fake" steps to build anticipation
 const SCAN_STEPS = [
   "Resolving DNS Records...",
   "Analyzing Script Tags...",
   "Checking WAF Signatures...",
+  "Testing Bot Access...",
   "Identifying Placebo Apps...",
   "Finalizing Report...",
 ];
@@ -33,6 +44,7 @@ export default function Form() {
 
   const scanWebsite = api.scan.scanWebsite.useMutation({
     onSuccess: (data) => {
+      // Force a minimum wait time for the "Theater" effect
       setTimeout(() => setShowResults(true), 2000);
       posthog.capture("site_scan_completed", data.data);
     },
@@ -62,7 +74,11 @@ export default function Form() {
 
   // Derived state for the verdict
   const data = scanWebsite.data?.data;
-  const isVulnerable = data && (data.detectedApps.length > 0 || !data.usesCloudflare || !data.isUnbotifyDomain);
+
+  // UPDATED VULNERABILITY LOGIC:
+  // If Bot Access is Allowed (200 OK), they are vulnerable regardless of Cloudflare status.
+  const isVulnerable =
+    data && (data.detectedApps.length > 0 || !data.usesCloudflare || !data.isUnbotifyDomain || data.botAccessAllowed); // <--- Critical Check
 
   return (
     <div className="mx-auto w-full max-w-2xl">
@@ -87,36 +103,19 @@ export default function Form() {
             </Card>
           </motion.div>
         ) : showResults && data && !scanWebsite.data?.success ? (
-          <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-            <Card
-              className={cn(
-                "gap-0 overflow-hidden border-2 !p-0",
-                isVulnerable ? "border-red-100" : "border-green-100",
-              )}
-            >
-              {/* Verdict Banner */}
-              <div
-                className={cn(
-                  "flex items-center justify-center gap-2 p-3 text-center font-bold tracking-wider text-white uppercase",
-                  isVulnerable ? "bg-blue-500" : "bg-green-500",
-                )}
-              >
+          // ERROR STATE
+          <motion.div key="error" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
+            <Card className="gap-0 overflow-hidden border-2 border-red-100 !p-0">
+              <div className="flex items-center justify-center gap-2 bg-blue-500 p-3 text-center font-bold tracking-wider text-white uppercase">
                 <ShieldCheck className="size-5" /> Unable to scan site
               </div>
-
               <CardContent className="p-0">
                 <div className="text-muted-foreground flex items-center justify-between border-b bg-slate-100 p-3 text-xs">
                   <span className="max-w-[300px] truncate font-mono">{form.getValues("url")}</span>
-                  <span className="font-semibold">{data.title.substring(0, 30)}...</span>
                 </div>
                 <div className="space-y-6 p-6">
-                  <div className="grid grid-cols-1 gap-4">
-                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
-                      <span className="text-sm font-medium">
-                        Unable to scan site. Either the site is already secure against bots (like the one used to
-                        perform this scan!), or it doesn&apos;t exist.
-                      </span>
-                    </div>
+                  <div className="text-center text-sm font-medium">
+                    Unable to scan site. It may not exist or blocked our scanner (which is good!).
                   </div>
                 </div>
                 <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
@@ -137,45 +136,31 @@ export default function Form() {
             </Card>
           </motion.div>
         ) : showResults && data && !data.usesShopify ? (
-          <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-            <Card
-              className={cn(
-                "gap-0 overflow-hidden border-2 !p-0",
-                isVulnerable ? "border-red-100" : "border-green-100",
-              )}
-            >
-              {/* Verdict Banner */}
-              <div
-                className={cn(
-                  "flex items-center justify-center gap-2 p-3 text-center font-bold tracking-wider text-white uppercase",
-                  isVulnerable ? "bg-yellow-500" : "bg-green-500",
-                )}
-              >
-                {isVulnerable ? (
-                  <>
-                    <AlertTriangle className="size-5" /> Not On Shopify
-                  </>
-                ) : (
-                  <>
-                    <ShieldCheck className="size-5" /> Site Secure
-                  </>
-                )}
+          // NOT SHOPIFY STATE
+          <motion.div
+            key="not-shopify"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full"
+          >
+            <Card className="gap-0 overflow-hidden border-2 border-yellow-100 !p-0">
+              <div className="flex items-center justify-center gap-2 bg-yellow-500 p-3 text-center font-bold tracking-wider text-white uppercase">
+                <AlertTriangle className="size-5" /> Not On Shopify
               </div>
-
               <CardContent className="p-0">
                 <div className="text-muted-foreground flex items-center justify-between border-b bg-slate-100 p-3 text-xs">
                   <span className="max-w-[300px] truncate font-mono">{form.getValues("url")}</span>
                   <span className="font-semibold">{data.title.substring(0, 30)}...</span>
                 </div>
-                <div className="space-y-6 p-6">
-                  <div className="grid grid-cols-1 gap-4">
-                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
-                      <Image src="/images/shopify-logo.png" alt="Shopify" width={32} height={32} />
-                      <span className="text-sm font-medium">
-                        {data.usesShopify ? "Shopify Detected" : "You do not use Shopify."}
-                      </span>
-                    </div>
-                  </div>
+                <div className="p-6 text-center">
+                  <Image
+                    src="/images/shopify-logo.png"
+                    alt="Shopify"
+                    width={32}
+                    height={32}
+                    className="mx-auto mb-2 opacity-50 grayscale"
+                  />
+                  <p>This tool is optimized for Shopify stores.</p>
                 </div>
                 <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
                   <Button
@@ -195,6 +180,7 @@ export default function Form() {
             </Card>
           </motion.div>
         ) : showResults && data ? (
+          // SUCCESS RESULT STATE
           <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
             <Card
               className={cn(
@@ -225,15 +211,20 @@ export default function Form() {
                   <span className="max-w-[300px] truncate font-mono">{form.getValues("url")}</span>
                   <span className="font-semibold">{data.title.substring(0, 30)}...</span>
                 </div>
+
                 <div className="space-y-6 p-6">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
+                  {/* TECH STACK GRID */}
+                  <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                    {/* Platform */}
+                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-3 text-center">
                       <Image src="/images/shopify-logo.png" alt="Shopify" width={32} height={32} />
-                      <span className="text-sm font-medium">
-                        {data.usesShopify ? "Shopify Detected" : "Not Shopify"}
-                      </span>
+                      <span className="text-xs font-bold tracking-wider text-slate-600 uppercase">Platform</span>
+                      <Badge variant="outline" className="bg-white">
+                        Shopify
+                      </Badge>
                     </div>
-                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
+                    {/* Cloudflare */}
+                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-3 text-center">
                       {data.usesCloudflare ? (
                         <Image src="/images/cloudflare-logo.png" alt="CF" width={32} height={32} />
                       ) : (
@@ -241,11 +232,21 @@ export default function Form() {
                           <Server className="size-4 text-slate-500" />
                         </div>
                       )}
-                      <span className={cn("text-sm font-medium", !data.usesCloudflare && "text-red-600")}>
-                        {data.usesCloudflare ? "Cloudflare WAF" : "No Cloudflare"}
-                      </span>
+                      <span className="text-xs font-bold tracking-wider text-slate-600 uppercase">DNS / WAF</span>
+                      <Badge
+                        variant={data.usesCloudflare ? "default" : "destructive"}
+                        className={data.usesCloudflare ? "bg-green-600" : ""}
+                      >
+                        {data.usesCloudflare ? "Cloudflare" : "Standard"}
+                      </Badge>
                     </div>
-                    <div className="col-span-2 flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
+                    {/* Unbotify */}
+                    <div
+                      className={cn(
+                        "col-span-2 flex flex-col items-center gap-2 rounded-lg border p-3 text-center md:col-span-1",
+                        data.isUnbotifyDomain ? "border-indigo-100 bg-indigo-50" : "bg-slate-50/50",
+                      )}
+                    >
                       {data.isUnbotifyDomain ? (
                         <Image src="/images/logo.png" alt="Unbotify" width={32} height={32} />
                       ) : (
@@ -253,11 +254,70 @@ export default function Form() {
                           <Server className="size-4 text-slate-500" />
                         </div>
                       )}
-                      <span className={cn("text-sm font-medium", !data.isUnbotifyDomain && "text-red-600")}>
-                        {data.isUnbotifyDomain ? "You are on Unbotify!" : "You are not on Unbotify."}
+                      <span className="text-xs font-bold tracking-wider text-slate-600 uppercase">Bot Firewall</span>
+                      <Badge
+                        variant={data.isUnbotifyDomain ? "default" : "destructive"}
+                        className={data.isUnbotifyDomain ? "!bg-indigo-500" : ""}
+                      >
+                        {data.isUnbotifyDomain ? "Active" : "Inactive"}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  {/* NEW METRICS GRID */}
+                  <div className="grid grid-cols-3 gap-4 border-t border-slate-100 pt-4">
+                    {/* Metric 1: Bot Access Test */}
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
+                        Bot Access
+                      </span>
+                      {data.botAccessAllowed ? (
+                        <Badge
+                          variant="destructive"
+                          className="flex items-center gap-1 border-red-200 bg-red-100 text-red-700 shadow-none hover:bg-red-200"
+                        >
+                          <Lock className="size-3" /> Allowed
+                        </Badge>
+                      ) : (
+                        <Badge className="flex items-center gap-1 border-green-200 bg-green-100 text-green-700 shadow-none hover:bg-green-200">
+                          <ShieldCheck className="size-3" /> Blocked
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Metric 2: Inventory Exposure */}
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
+                        Inventory
+                      </span>
+                      {data.publicInventory ? (
+                        <Badge variant="outline" className="border-yellow-200 bg-yellow-50 text-yellow-700 shadow-none">
+                          Exposed
+                        </Badge>
+                      ) : (
+                        <Badge variant="outline" className="border-green-200 bg-green-50 text-green-700 shadow-none">
+                          Hidden
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* Metric 3: Server Latency */}
+                    <div className="flex flex-col items-center gap-1 text-center">
+                      <span className="text-muted-foreground text-[10px] font-bold tracking-wider uppercase">
+                        Latency
+                      </span>
+                      <span
+                        className={cn(
+                          "font-mono text-sm font-bold",
+                          data.ttfb > 800 ? "text-red-600" : "text-slate-700",
+                        )}
+                      >
+                        {data.ttfb}ms
                       </span>
                     </div>
                   </div>
+
+                  {/* DETECTED APPS */}
                   {data.detectedApps.length > 0 ? (
                     <div className="space-y-3 rounded-lg border border-red-100 bg-red-50 p-4">
                       <div className="flex items-center gap-2 font-bold text-red-700">
@@ -285,10 +345,12 @@ export default function Form() {
                       <p className="text-xs text-green-600">No common placebo apps detected in source code.</p>
                     </div>
                   )}
+
+                  <p className="text-muted-foreground text-center text-xs">
+                    Our scanner tool <i>is</i> a bot. If "Bot Access" is Allowed, you are not secured.
+                  </p>
                 </div>
-                <p className="text-muted-foreground mb-4 text-center text-xs">
-                  Our scanner tool <i>is</i> a bot. If this tool ran, you are not secured against bots.
-                </p>
+
                 <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
                   <Button
                     onClick={() => router.push("/contact?website=" + form.getValues("url"))}
@@ -313,6 +375,7 @@ export default function Form() {
             </Card>
           </motion.div>
         ) : (
+          /* INPUT STATE */
           <motion.div
             key="input"
             initial={{ opacity: 0, y: 10 }}
@@ -327,23 +390,25 @@ export default function Form() {
               <CardContent>
                 <form onSubmit={form.handleSubmit(handleSubmit)}>
                   <div className="space-y-4">
-                    <Input
-                      label="Enter your site URL"
-                      placeholder="example.com" // Remove the https:// from placeholder
-                      required
-                      type="text"
-                      autoComplete="url"
-                      {...form.register("url", {
-                        onChange: (e) => {
-                          const val = e.target.value;
-                          if (val.startsWith("https://")) {
-                            e.target.value = val.replace("https://", "");
-                          } else if (val.startsWith("http://")) {
-                            e.target.value = val.replace("http://", "");
-                          }
-                        },
-                      })}
-                    />
+                    <div className="relative">
+                      <Input
+                        label="Enter your site URL"
+                        placeholder="example.com"
+                        required
+                        type="text"
+                        autoComplete="url"
+                        {...form.register("url", {
+                          onChange: (e) => {
+                            const val = e.target.value;
+                            if (val.startsWith("https://")) {
+                              e.target.value = val.replace("https://", "");
+                            } else if (val.startsWith("http://")) {
+                              e.target.value = val.replace("http://", "");
+                            }
+                          },
+                        })}
+                      />
+                    </div>
                     <Button
                       type="submit"
                       className="w-full !bg-indigo-600"

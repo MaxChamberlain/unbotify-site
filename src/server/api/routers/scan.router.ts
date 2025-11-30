@@ -28,6 +28,9 @@ export const scanRouter = createTRPCRouter({
         detectedApps: [] as string[],
         isUnbotifyDomain: false,
         url: input.url,
+        ttfb: 0,
+        botAccessAllowed: false,
+        publicInventory: false,
       },
     };
     try {
@@ -38,6 +41,9 @@ export const scanRouter = createTRPCRouter({
       ret.data.usesCloudflare = data.usesCloudflare;
       ret.data.detectedApps = data.detectedApps || [];
       ret.data.isUnbotifyDomain = data.isUnbotifyDomain;
+      ret.data.ttfb = data.ttfb;
+      ret.data.botAccessAllowed = data.botAccessAllowed;
+      ret.data.publicInventory = data.publicInventory;
     } catch (error) {
       ret.success = false;
       ret.message = "Scan failed";
@@ -48,15 +54,20 @@ export const scanRouter = createTRPCRouter({
 
 async function scanWebsite({ url }: { url: string }) {
   const properURL = new URL(url);
-  const response = await fetch(properURL.origin, {
+  const start = performance.now();
+
+  // A good WAF should challenge or block this.
+  const response = await fetch(properURL.href, {
     headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "User-Agent": "Mozilla/5.0 (compatible; SecurityScanner/1.0)",
     },
   });
-  if (!response.ok) {
-    throw new Error("Failed to scan website");
-  }
+
+  const ttfb = Math.round(performance.now() - start);
+  const botAccessAllowed = response.status >= 200 && response.status < 300;
+  const productsJsonUrl = `${properURL.origin}/products.json`;
+  const productsResponse = await fetch(productsJsonUrl, { method: "HEAD" });
+  const publicInventory = productsResponse.status === 200;
   const html = await response.text();
   const $ = cheerio.load(html);
   const pageTitle = $("title").first().text();
@@ -89,5 +100,8 @@ async function scanWebsite({ url }: { url: string }) {
     usesCloudflare,
     detectedApps,
     isUnbotifyDomain,
+    ttfb,
+    botAccessAllowed,
+    publicInventory,
   } as const;
 }
