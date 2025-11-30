@@ -12,9 +12,10 @@ import { sendContactUsEmailInput } from "@/server/api/schemas/email.schema";
 import { api } from "@/trpc/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader2, Send } from "lucide-react";
+import { Info, Loader2, Lock, Send } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import posthog from "posthog-js";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import type z from "zod";
 
@@ -77,6 +78,13 @@ export default function Form() {
     },
     mode: "all",
   });
+
+  useEffect(() => {
+    const website = searchParams.get("website");
+    if (website && !form.getValues("website")) {
+      form.setValue("website", website);
+    }
+  }, [searchParams]);
   return (
     <div className="animate-in zoom-in-95 fade-in-0 w-full max-w-2xl duration-700" key="contact">
       <AnimatePresence mode="popLayout">
@@ -91,18 +99,16 @@ export default function Form() {
           >
             <Card className="w-full">
               <CardHeader>
-                <CardTitle>We got the request!</CardTitle>
+                <CardTitle>Application Received!</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-4 text-center">
                 <p>
-                  Thanks for contacting us! We will get back to you as soon as possible with details on our services.
+                  We are reviewing your store's traffic eligibility now. Expect a personal email from our engineering
+                  team within 24 hours to confirm your Pilot spot.
                 </p>
                 <div className="flex w-full justify-end gap-2">
-                  <Button onClick={() => router.push("/")} variant="secondary">
+                  <Button onClick={() => router.push("/")} className="!bg-indigo-500">
                     Back to home
-                  </Button>
-                  <Button onClick={() => router.push("/contact")} className="!bg-indigo-500">
-                    Submit another request
                   </Button>
                 </div>
               </CardContent>
@@ -146,7 +152,8 @@ export default function Form() {
                             const atIdx = email.indexOf("@");
                             if (atIdx !== -1 && atIdx < email.length - 1) {
                               const domain = email.slice(atIdx + 1).trim();
-                              if (domain && !website) {
+                              const commonProviders = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com"];
+                              if (domain && !commonProviders.includes(domain) && !website) {
                                 form.setValue("website", domain);
                               }
                             }
@@ -165,7 +172,7 @@ export default function Form() {
                         placeholder="123 Main St, Anytown, USA"
                         autoComplete="off"
                         {...form.register("address")}
-                        className="hidden"
+                        className="absolute -top-[999rem]"
                         tabIndex={-1}
                       />
                       <Select
@@ -206,6 +213,10 @@ export default function Form() {
                         {sendEmail.isPending && <Loader2 className="size-4 animate-spin text-white" />}
                         Get protection <Send />
                       </Button>
+                      <div className="text-muted-foreground flex items-center justify-center gap-2 text-sm">
+                        <Lock className="size-4" />
+                        <p>No credit card required for application.</p>
+                      </div>
                     </div>
                   </div>
                 </form>

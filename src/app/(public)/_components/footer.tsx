@@ -24,7 +24,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-3">
               <FooterLink to="/#discovery-problem">The problem</FooterLink>
               <FooterLink to="/#discovery-solution">Our solution</FooterLink>
-              <FooterLink to="/contact">Contact</FooterLink>
+              <FooterLink to="/contact">Apply for pilot program</FooterLink>
             </ul>
           </div>
         </div>

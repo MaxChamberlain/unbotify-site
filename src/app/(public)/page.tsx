@@ -1,18 +1,13 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   AlertCircle,
   ChevronRight,
-  CircleAlert,
   CreditCard,
-  DatabaseZap,
-  DollarSign,
   LogOut,
   Mail,
   ShoppingCart,
-  Receipt,
-  Wrench,
   Hourglass,
   ShieldAlert,
   Globe,
@@ -117,7 +112,7 @@ export default function Home() {
           </div>
         </div>
         <div className="relative flex h-full w-full flex-2 -translate-x-8 flex-col gap-8 opacity-60 max-lg:hidden">
-          <video autoPlay muted preload="none" className="absolute inset-0">
+          <video autoPlay muted preload="none" poster="/images/dashboard-preview.jpg" className="absolute inset-0">
             <source src="/videos/hero-blob.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>

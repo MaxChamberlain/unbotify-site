@@ -28,6 +28,10 @@ export function Navbar() {
       name: "Our solution",
       link: "/#discovery-solution",
     },
+    {
+      name: "Scan your site",
+      link: "/site-scan",
+    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

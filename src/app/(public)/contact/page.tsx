@@ -5,11 +5,10 @@ import Form from "./_components/form";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Contact Max Integrations for project specifications, pricing, or questions about our services. We're here to help you find the best engineering solutions to your problems.",
+  title: "Apply for Pilot Program | Unbotify",
+  description: "Secure your spot in the Unbotify Managed WAF Pilot. Stop paying for bot traffic today.",
   alternates: {
-    canonical: "https://maxintegrations.net/contact",
+    canonical: "https://unbotify.io/contact",
   },
 };
 
@@ -21,9 +20,15 @@ export default function ContactPage() {
           We&apos;d love to stop the bots for your store!
         </Badge>
         <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Apply for the Pilot Program</h1>
-        <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700">
+        <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center whitespace-nowrap duration-700">
           Stop paying for fake profiles. Secure your spot in our managed WAF pilot for{" "}
-          <span className="font-bold text-slate-900">$249/mo</span>.
+          <span className="relative font-bold text-slate-900">
+            $249/mo{" "}
+            <span className="text-muted-foreground absolute -bottom-6 left-0 scale-75 font-normal line-through">
+              $499/mo
+            </span>
+          </span>
+          .
         </p>
         <Suspense fallback={<div className="h-[432px] w-full" />}>
           <Form />
