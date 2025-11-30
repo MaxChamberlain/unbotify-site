@@ -13,8 +13,6 @@ const KNOWN_BLOCKERS = [
   { id: "bot-manager", name: "Shopify Bot Manager", signatures: ["bot-manager"] },
 ];
 
-const DOMAINS_ON_UNBOTIFY = env.UNBOTIFY_DOMAINS.split(",");
-
 export const scanRouter = createTRPCRouter({
   scanWebsite: publicProcedure.input(scanInput).mutation(async ({ ctx, input }) => {
     let ret = {
@@ -52,39 +50,62 @@ export const scanRouter = createTRPCRouter({
   }),
 });
 
+const DOMAINS_ON_UNBOTIFY = env.UNBOTIFY_DOMAINS.split(",").map((d) => d.trim());
+
 async function scanWebsite({ url }: { url: string }) {
   const properURL = new URL(url);
   const start = performance.now();
-  const isUnbotifyDomain = DOMAINS_ON_UNBOTIFY.some((domain) => properURL.hostname.includes(domain));
 
-  // A good WAF should challenge or block this.
-  const response = await fetch(properURL.href, {
+  const botResponse = await fetch(properURL.href, {
     headers: {
       "User-Agent": "Mozilla/5.0 (compatible; SecurityScanner/1.0)",
     },
   });
 
-  if (!response.ok && !isUnbotifyDomain) {
-    throw new Error("Failed to scan website");
+  const ttfb = Math.round(performance.now() - start);
+
+  const botAccessAllowed = botResponse.status >= 200 && botResponse.status < 300;
+
+  let html = "";
+  if (!botAccessAllowed) {
+    try {
+      const humanResponse = await fetch(properURL.href, {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        },
+      });
+      html = await humanResponse.text();
+    } catch (e) {
+      console.error("Human access failed", e);
+    }
+  } else {
+    html = await botResponse.text();
   }
 
-  const ttfb = Math.round(performance.now() - start);
-  const botAccessAllowed = response.status >= 200 && response.status < 300;
   const productsJsonUrl = `${properURL.origin}/products.json`;
-  const productsResponse = await fetch(productsJsonUrl, { method: "HEAD" });
-  const publicInventory = productsResponse.status === 200;
-  const html = await response.text();
+  let publicInventory = false;
+  try {
+    const productsResponse = await fetch(productsJsonUrl, { method: "HEAD" });
+    publicInventory = productsResponse.status === 200;
+  } catch (e) {
+    console.error("Inventory check failed", e);
+  }
+
   const $ = cheerio.load(html);
   const pageTitle = $("title").first().text();
   const description = $('meta[name="description"]').attr("content");
+
   const usesShopify = $("script[src]")
     .toArray()
     .some((el) => {
       const src = $(el).attr("src");
       return src && src.includes("shopify.com");
     });
+
   const dnsRecords = await getDnsRecords(properURL.origin);
   const usesCloudflare = dnsRecords.ns.some((record: string) => record.includes(".ns.cloudflare.com"));
+
   const detectedApps: string[] = [];
   const scripts = $("script[src]").toArray();
   scripts.forEach((el) => {
@@ -97,6 +118,9 @@ async function scanWebsite({ url }: { url: string }) {
       }
     });
   });
+
+  const isUnbotifyDomain = DOMAINS_ON_UNBOTIFY.some((domain) => properURL.hostname.includes(domain));
+
   return {
     title: pageTitle,
     description,
