@@ -35,9 +35,10 @@ export default function Form() {
   const [showResults, setShowResults] = useState(false);
 
   const scanWebsite = api.scan.scanWebsite.useMutation({
-    onSuccess: () => {
+    onSuccess: (data) => {
       // Don't show immediately, let the animation finish
       setTimeout(() => setShowResults(true), 2000);
+      posthog.capture("site_scan_completed", data.data);
     },
   });
 
