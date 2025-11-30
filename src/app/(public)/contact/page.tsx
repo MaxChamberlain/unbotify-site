@@ -20,7 +20,7 @@ export default function ContactPage() {
           We&apos;d love to stop the bots for your store!
         </Badge>
         <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Apply for the Pilot Program</h1>
-        <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center whitespace-nowrap duration-700">
+        <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700 lg:whitespace-nowrap">
           Stop paying for fake profiles. Secure your spot in our managed WAF pilot for{" "}
           <span className="relative font-bold text-slate-900">
             $249/mo{" "}
