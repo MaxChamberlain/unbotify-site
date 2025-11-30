@@ -112,7 +112,7 @@ export default function Home() {
               className="w-full max-w-[12rem] bg-indigo-500 hover:bg-indigo-400"
               asChild
             >
-              <Link href="/contact">Get in touch</Link>
+              <Link href="/contact">Join our pilot program</Link>
             </Button>
           </div>
         </div>

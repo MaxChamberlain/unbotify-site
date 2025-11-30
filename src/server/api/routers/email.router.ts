@@ -13,7 +13,7 @@ export const emailRouter = createTRPCRouter({
 });
 
 async function sendContactUsEmail({ input }: { input: z.infer<typeof sendContactUsEmailInput> }) {
-  const { name, email, message, website, company, address } = input;
+  const { name, email, painpoint, website, address } = input;
 
   const resend = new Resend(env.RESEND_API_KEY);
 
@@ -21,7 +21,7 @@ async function sendContactUsEmail({ input }: { input: z.infer<typeof sendContact
   if (address) {
     subject = `Honeypot trigger on ${address}`;
   } else {
-    subject = `Unbotify lead: ${name} ${company ? `(${company})` : ""}`;
+    subject = `Unbotify lead: ${name}`;
   }
 
   const { data, error } = await resend.emails.send({
@@ -29,12 +29,12 @@ async function sendContactUsEmail({ input }: { input: z.infer<typeof sendContact
     to: CONTACT_US_EMAIL,
     subject: subject,
     replyTo: email,
-    html: `<span>Respond to ${name} &lt;<a href="mailto:${email}">${email}</a>&gt;</span><p>${message}</p><p>Website: ${website}</p><p>Company: ${company}</p>`,
+    html: `<span>Respond to ${name} &lt;<a href="mailto:${email}">${email}</a>&gt;</span><p>${painpoint}</p><p>Website: ${website}</p>`,
     text: `New lead
 Name: ${name}
 Email: ${email}
 Website: ${website}
-Message: ${message}`,
+Painpoint: ${painpoint}`,
   });
 
   if (error) {

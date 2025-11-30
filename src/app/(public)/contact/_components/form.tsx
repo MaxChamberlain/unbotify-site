@@ -39,24 +39,22 @@ export default function Form() {
       name: data.name,
       email: data.email,
       website: data.website,
-      company: data.company,
+      painpoint: data.painpoint,
       address: data.address,
     });
     posthog.capture("contact_us_form_submitted", {
       name: data.name,
       email: data.email,
       website: data.website,
-      company: data.company,
+      painpoint: data.painpoint,
       address: data.address,
-      message: data.message,
       current_rate: 499.0,
     });
     sendEmail.mutate({
       name: data.name,
       email: data.email,
-      message: data.message,
+      painpoint: data.painpoint,
       website: data.website,
-      company: data.company,
       address: data.address,
     });
   };
@@ -66,7 +64,6 @@ export default function Form() {
     defaultValues: {
       name: "",
       email: "",
-      message: "",
     },
     mode: "all",
   });
@@ -85,10 +82,12 @@ export default function Form() {
           >
             <Card className="w-full">
               <CardHeader>
-                <CardTitle>We got the message!</CardTitle>
+                <CardTitle>We got the request!</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col gap-4 text-center">
-                <p>Thanks for contacting us! We will get back to you as soon as possible.</p>
+                <p>
+                  Thanks for contacting us! We will get back to you as soon as possible with details on our services.
+                </p>
                 <div className="flex w-full justify-end gap-2">
                   <Button onClick={() => router.push("/")} variant="secondary">
                     Back to home
@@ -137,12 +136,6 @@ export default function Form() {
                         autoComplete="website"
                       />
                       <Input
-                        label="Company"
-                        placeholder="Example Inc."
-                        {...form.register("company")}
-                        autoComplete="company"
-                      />
-                      <Input
                         label="Address"
                         placeholder="123 Main St, Anytown, USA"
                         autoComplete="off"
@@ -150,19 +143,31 @@ export default function Form() {
                         className="hidden"
                         tabIndex={-1}
                       />
-                      <Textarea
-                        label="Message"
-                        placeholder="My Klaviyo mailing list is being spammed by bots."
-                        required
-                        {...form.register("message")}
-                      />
+                      <Select {...form.register("painpoint")}>
+                        <SelectTrigger label="Painpoint" className="w-full">
+                          <SelectValue placeholder="Select a painpoint" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="bot-protection">My marketing list is being inflated by bots</SelectItem>
+                          <SelectItem value="analytics-shield">
+                            My conversion analytics are showing fake data
+                          </SelectItem>
+                          <SelectItem value="web-application-firewall">
+                            Bots are killing my return on ad spend
+                          </SelectItem>
+                          <SelectItem value="web-application-firewall">
+                            My team is wasting resources cleaning up bot mess
+                          </SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <Button
                         type="submit"
-                        className="w-full !bg-indigo-500"
+                        className="mt-4 w-full !bg-indigo-500"
                         disabled={sendEmail.isPending || !form.formState.isValid}
                       >
                         {sendEmail.isPending && <Loader2 className="size-4 animate-spin text-white" />}
-                        Request service <Send />
+                        Get protection <Send />
                       </Button>
                     </div>
                   </div>

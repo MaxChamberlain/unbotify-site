@@ -28,10 +28,6 @@ export function Navbar() {
       name: "Our solution",
       link: "/#discovery-solution",
     },
-    {
-      name: "Contact",
-      link: "/contact",
-    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,7 +46,7 @@ export function Navbar() {
               href="/contact"
               className="flex items-center justify-center gap-2 rounded-full bg-indigo-500 text-white"
             >
-              Get in touch <ArrowRight className="size-4" />
+              Join our pilot program <ArrowRight className="size-4" />
             </NavbarButton>
           )}
           {pathname === "/contact" && (
@@ -87,7 +83,7 @@ export function Navbar() {
                 href="/contact"
                 className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
               >
-                Get in touch
+                Join our pilot program
               </NavbarButton>
             )}
             {pathname === "/contact" && (

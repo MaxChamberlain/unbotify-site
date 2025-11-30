@@ -20,10 +20,10 @@ export default function ContactPage() {
         <Badge className="fade-in-0 zoom-in-95 animate-in !bg-indigo-500/15 !text-indigo-500 duration-700">
           We&apos;d love to stop the bots for your store!
         </Badge>
-        <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Contact us</h1>
+        <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Apply for the Pilot Program</h1>
         <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700">
-          Looking to stop bots from breaking into your store? We're here to help. Just fill out the form below and we'll
-          get back to you as soon as possible.
+          Stop paying for fake profiles. Secure your spot in our managed WAF pilot for{" "}
+          <span className="font-bold text-slate-900">$249/mo</span>.
         </p>
         <Suspense fallback={<div className="h-[432px] w-full" />}>
           <Form />
