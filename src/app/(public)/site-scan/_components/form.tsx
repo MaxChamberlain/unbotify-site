@@ -78,7 +78,9 @@ export default function Form() {
   // UPDATED VULNERABILITY LOGIC:
   // If Bot Access is Allowed (200 OK), they are vulnerable regardless of Cloudflare status.
   const isVulnerable =
-    data && (data.detectedApps.length > 0 || !data.usesCloudflare || !data.isUnbotifyDomain || data.botAccessAllowed); // <--- Critical Check
+    data &&
+    scanWebsite.data?.success &&
+    (data.detectedApps.length > 0 || !data.usesCloudflare || !data.isUnbotifyDomain || data.botAccessAllowed); // <--- Critical Check
 
   return (
     <div className="mx-auto w-full max-w-2xl">
