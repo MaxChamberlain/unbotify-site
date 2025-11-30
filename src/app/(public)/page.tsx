@@ -108,7 +108,7 @@ export default function Home() {
               className="w-full max-w-[20rem] bg-indigo-500 hover:bg-indigo-400"
               asChild
             >
-              <Link href="/contact">
+              <Link href="/site-scan">
                 <Search /> Scan your site for bot vulnerabilities
               </Link>
             </Button>
@@ -121,7 +121,7 @@ export default function Home() {
           </video>
         </div>
       </section>
-      <section className="w-full max-w-7xl !px-0 max-md:hidden">
+      <section className="w-full max-w-7xl !px-0">
         <Link href="/contact">
           <Badge
             variant="outline"
