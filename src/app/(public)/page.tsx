@@ -179,7 +179,7 @@ export default function Home() {
           </div>
           <Card className="overflow-hidden !pb-0">
             <CardContent className="p-0 !pb-0">
-              <h3 className="px-6 text-base font-bold">What Does This Cost Me?</h3>
+              <h3 className="px-6 text-base font-bold">How does this affect my business?</h3>
               <div>
                 <div className="px-6 pb-4">
                   <p className="text-muted-foreground text-sm leading-relaxed">
