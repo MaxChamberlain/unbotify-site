@@ -67,7 +67,7 @@ export default function Form() {
     },
     mode: "all",
   });
-
+  console.log("errs", form.formState.errors);
   return (
     <div className="animate-in zoom-in-95 fade-in-0 w-full max-w-2xl duration-700" key="contact">
       <AnimatePresence mode="popLayout">
@@ -93,7 +93,7 @@ export default function Form() {
                     Back to home
                   </Button>
                   <Button onClick={() => router.push("/contact")} className="!bg-indigo-500">
-                    Send another message
+                    Submit another request
                   </Button>
                 </div>
               </CardContent>
@@ -134,6 +134,7 @@ export default function Form() {
                         placeholder="https://example.com"
                         {...form.register("website")}
                         autoComplete="website"
+                        required
                       />
                       <Input
                         label="Address"
@@ -143,7 +144,11 @@ export default function Form() {
                         className="hidden"
                         tabIndex={-1}
                       />
-                      <Select {...form.register("painpoint")}>
+                      <Select
+                        required
+                        value={form.watch("painpoint")}
+                        onValueChange={(value) => form.setValue("painpoint", value)}
+                      >
                         <SelectTrigger label="Painpoint" className="w-full">
                           <SelectValue placeholder="Select a painpoint" />
                         </SelectTrigger>
@@ -155,7 +160,7 @@ export default function Form() {
                           <SelectItem value="web-application-firewall">
                             Bots are killing my return on ad spend
                           </SelectItem>
-                          <SelectItem value="web-application-firewall">
+                          <SelectItem value="resource-waste">
                             My team is wasting resources cleaning up bot mess
                           </SelectItem>
                           <SelectItem value="other">Other</SelectItem>
@@ -164,7 +169,15 @@ export default function Form() {
                       <Button
                         type="submit"
                         className="mt-4 w-full !bg-indigo-500"
-                        disabled={sendEmail.isPending || !form.formState.isValid}
+                        disabled={
+                          sendEmail.isPending ||
+                          !(
+                            form.watch("name") &&
+                            form.watch("email") &&
+                            form.watch("website") &&
+                            form.watch("painpoint")
+                          )
+                        }
                       >
                         {sendEmail.isPending && <Loader2 className="size-4 animate-spin text-white" />}
                         Get protection <Send />

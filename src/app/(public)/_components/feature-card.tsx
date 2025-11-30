@@ -47,13 +47,13 @@ export default function FeatureCard({ title, description, image, features, link 
           <div className="to-muted-foreground/20 absolute bottom-0 left-0 h-4 w-full bg-gradient-to-b from-transparent opacity-0 transition-all duration-300 group-hover:opacity-100" />
         </div>
         <CardHeader className="gap-6">
-          <CardTitle className="text-2xl">
+          <CardTitle className="text-lg">
             <h3>{title}</h3>
           </CardTitle>
-          <CardDescription className="text-primary text-lg">{description}</CardDescription>
+          <CardDescription className="text-primary text-sm">{description}</CardDescription>
         </CardHeader>
         <CardContent className="pb-0 transition-all duration-300 group-hover:pb-12 max-lg:pb-12">
-          <ul className="[&_li]:text-primary/80 flex flex-col gap-4 [&_li]:flex [&_li]:items-start [&_li]:gap-1 [&_li]:text-base">
+          <ul className="[&_li]:text-primary/80 flex flex-col gap-4 [&_li]:flex [&_li]:items-start [&_li]:gap-1 [&_li]:text-sm">
             {features.map((feature) => (
               <li key={feature.text}>
                 <CheckCircle2 className="!h-5 !w-5 flex-shrink-0 translate-y-0.5 fill-indigo-500/50 text-white" />
