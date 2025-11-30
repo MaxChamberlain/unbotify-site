@@ -50,6 +50,16 @@ export default function Form() {
       address: data.address,
       current_rate: 499.0,
     });
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "conversion", {
+        send_to: "AW-17260632331/IgXoCNz0xMkbEIuywaZA",
+        value: 249.0,
+        currency: "USD",
+        enhanced_conversion_data: {
+          email: data.email,
+        },
+      });
+    }
     sendEmail.mutate({
       name: data.name,
       email: data.email,
