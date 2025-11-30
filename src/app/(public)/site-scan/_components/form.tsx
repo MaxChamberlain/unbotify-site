@@ -95,7 +95,12 @@ export default function Form() {
         ) : showResults && data ? (
           /* STATE 2: RESULTS (THE RECEIPT) */
           <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-            <Card className={cn("overflow-hidden border-2", isVulnerable ? "border-red-100" : "border-green-100")}>
+            <Card
+              className={cn(
+                "gap-0 overflow-hidden border-2 !p-0",
+                isVulnerable ? "border-red-100" : "border-green-100",
+              )}
+            >
               {/* Verdict Banner */}
               <div
                 className={cn(
@@ -212,12 +217,21 @@ export default function Form() {
                 <form onSubmit={form.handleSubmit(handleSubmit)}>
                   <div className="space-y-4">
                     <Input
-                      placeholder="https://client-store.com"
+                      label="Enter your site URL"
+                      placeholder="example.com" // Remove the https:// from placeholder
                       required
-                      type="url"
+                      type="text"
                       autoComplete="url"
-                      className="h-12 text-lg"
-                      {...form.register("url")}
+                      {...form.register("url", {
+                        onChange: (e) => {
+                          const val = e.target.value;
+                          if (val.startsWith("https://")) {
+                            e.target.value = val.replace("https://", "");
+                          } else if (val.startsWith("http://")) {
+                            e.target.value = val.replace("http://", "");
+                          }
+                        },
+                      })}
                     />
                     <Button
                       type="submit"

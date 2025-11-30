@@ -6,7 +6,7 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Scan Your Site | Unbotify",
-  description: "Scan your site and gain insight into its security agains the Shopify bot traffic.",
+  description: "Scan your site and gain insight into its security against Shopify bot traffic.",
   alternates: {
     canonical: "https://unbotify.io/site-scan",
   },
