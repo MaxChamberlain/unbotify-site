@@ -55,6 +55,7 @@ export const scanRouter = createTRPCRouter({
 async function scanWebsite({ url }: { url: string }) {
   const properURL = new URL(url);
   const start = performance.now();
+  const isUnbotifyDomain = DOMAINS_ON_UNBOTIFY.some((domain) => properURL.hostname.includes(domain));
 
   // A good WAF should challenge or block this.
   const response = await fetch(properURL.href, {
@@ -63,7 +64,7 @@ async function scanWebsite({ url }: { url: string }) {
     },
   });
 
-  if (!response.ok) {
+  if (!response.ok && !isUnbotifyDomain) {
     throw new Error("Failed to scan website");
   }
 
@@ -96,7 +97,6 @@ async function scanWebsite({ url }: { url: string }) {
       }
     });
   });
-  const isUnbotifyDomain = DOMAINS_ON_UNBOTIFY.some((domain) => properURL.hostname.includes(domain));
   return {
     title: pageTitle,
     description,
