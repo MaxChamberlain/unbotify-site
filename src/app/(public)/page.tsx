@@ -15,6 +15,7 @@ import {
   LockIcon,
   ArrowRight,
   CheckCircle2,
+  Search,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -104,10 +105,12 @@ export default function Home() {
             <Button
               variant="default"
               size="lg"
-              className="w-full max-w-[12rem] bg-indigo-500 hover:bg-indigo-400"
+              className="w-full max-w-[20rem] bg-indigo-500 hover:bg-indigo-400"
               asChild
             >
-              <Link href="/contact">Join our pilot program</Link>
+              <Link href="/contact">
+                <Search /> Scan your site for bot vulnerabilities
+              </Link>
             </Button>
           </div>
         </div>
@@ -119,12 +122,12 @@ export default function Home() {
         </div>
       </section>
       <section className="w-full max-w-7xl !px-0 max-md:hidden">
-        <Link href="/#discovery-problem">
+        <Link href="/contact">
           <Badge
             variant="outline"
-            className="fade-in-0 zoom-in-95 group animate-in text-muted-foreground hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
+            className="fade-in-0 zoom-in-95 group animate-in hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
           >
-            Learn about the Shopify bot problem
+            Join our intelligence network at our pilot rate
             <ChevronRight className="transition-all duration-300 group-hover:translate-x-1" />
           </Badge>
         </Link>
