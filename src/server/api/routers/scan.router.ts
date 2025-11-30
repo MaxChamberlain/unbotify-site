@@ -105,7 +105,7 @@ async function scanWebsite({ url }: { url: string }) {
     detectedApps,
     isUnbotifyDomain,
     ttfb,
-    botAccessAllowed,
-    publicInventory,
+    botAccessAllowed: isUnbotifyDomain ? false : botAccessAllowed,
+    publicInventory: isUnbotifyDomain ? false : publicInventory,
   } as const;
 }
