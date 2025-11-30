@@ -86,6 +86,56 @@ export default function Form() {
               </div>
             </Card>
           </motion.div>
+        ) : showResults && data && !scanWebsite.data?.success ? (
+          <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
+            <Card
+              className={cn(
+                "gap-0 overflow-hidden border-2 !p-0",
+                isVulnerable ? "border-red-100" : "border-green-100",
+              )}
+            >
+              {/* Verdict Banner */}
+              <div
+                className={cn(
+                  "flex items-center justify-center gap-2 p-3 text-center font-bold tracking-wider text-white uppercase",
+                  isVulnerable ? "bg-blue-500" : "bg-green-500",
+                )}
+              >
+                <ShieldCheck className="size-5" /> Unable to scan site
+              </div>
+
+              <CardContent className="p-0">
+                <div className="text-muted-foreground flex items-center justify-between border-b bg-slate-100 p-3 text-xs">
+                  <span className="max-w-[300px] truncate font-mono">{form.getValues("url")}</span>
+                  <span className="font-semibold">{data.title.substring(0, 30)}...</span>
+                </div>
+                <div className="space-y-6 p-6">
+                  <div className="grid grid-cols-1 gap-4">
+                    <div className="flex flex-col items-center gap-2 rounded-lg border bg-slate-50/50 p-4 text-center">
+                      <span className="text-sm font-medium">
+                        Unable to scan site. Either the site is already secure against bots (like the one used to
+                        perform this scan!), or it doesn&apos;t exist.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
+                  <Button
+                    variant="ghost"
+                    className="w-full"
+                    onClick={() => {
+                      setShowResults(false);
+                      setScanStep(0);
+                      scanWebsite.reset();
+                      form.reset();
+                    }}
+                  >
+                    Scan Another
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         ) : showResults && data && !data.usesShopify ? (
           <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
             <Card
@@ -236,6 +286,9 @@ export default function Form() {
                     </div>
                   )}
                 </div>
+                <p className="text-muted-foreground mb-4 text-center text-xs">
+                  Our scanner tool <i>is</i> a bot. If this tool ran, you are not secured against bots.
+                </p>
                 <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
                   <Button
                     onClick={() => router.push("/contact?website=" + form.getValues("url"))}
