@@ -123,7 +123,7 @@ export default function Home() {
       </section>
       <section className="-mt-16 flex w-full max-w-7xl justify-center !px-0 md:hidden">
         <Button variant="outline" size="lg" className="w-full max-w-[20rem]" asChild>
-          <Link href="/contact">Secure your store now</Link>
+          <Link href="/contact">Join our pilot program</Link>
         </Button>
       </section>
       <section className="w-full max-w-7xl !px-0 max-md:hidden">

@@ -19,7 +19,7 @@ export default function ContactPage() {
         <Badge className="fade-in-0 zoom-in-95 animate-in !bg-indigo-500/15 !text-indigo-500 duration-700">
           We&apos;d love to stop the bots for your store!
         </Badge>
-        <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Apply for the Pilot Program</h1>
+        <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Join for the Pilot Program</h1>
         <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700 lg:whitespace-nowrap">
           Stop paying for fake profiles. Secure your spot in our managed WAF pilot for{" "}
           <span className="relative font-bold text-slate-900">
