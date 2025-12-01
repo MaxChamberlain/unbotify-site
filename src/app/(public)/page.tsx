@@ -22,6 +22,7 @@ import Link from "next/link";
 import Script from "next/script";
 import FeatureCard from "./_components/feature-card";
 import type { Metadata } from "next";
+import { Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from "@/components/ui/shadcn-io/marquee";
 
 interface AttackStep {
   number: number;
@@ -97,9 +98,9 @@ export default function Home() {
               </span>
             </h1>
           </div>
-          <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-lg text-base duration-700 md:text-lg">
-            Unbotify manages your Web Application Firewall and Bot Protection, stopping malicious traffic from touching
-            your site, dirtying your analytics, inflating your mailing lists, and hurting your ROAS.
+          <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-lg text-base duration-700 max-md:px-8 md:text-lg">
+            Unbotify manages your Web Application Firewall (WAF) and Bot Protection, stopping malicious traffic from
+            touching your site, dirtying your analytics, inflating your mailing lists, and hurting your ROAS.
           </p>
           <div className="fade-in-0 zoom-in-95 animate-in flex w-full duration-700 max-lg:justify-center">
             <Button
@@ -145,26 +146,50 @@ export default function Home() {
               We&apos;ve worked with a variety of clients, from startups to established companies.
             </p>
           </div>
-          <div
-            className="fade-in-0 animate-in grid grid-cols-1 place-items-center gap-x-36 gap-y-8 duration-700 max-md:gap-y-12 max-md:px-24 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-            style={{
-              filter: "invert(63%) sepia(25%) saturate(357%) hue-rotate(192deg) brightness(89%) contrast(98%)",
-            }}
-          >
-            <Image src="/images/maven-lane-logo.png" width={320} height={81} alt="Maven Lane Logo" />
-            <Image src="/images/max-autolytics-logo.png" width={320} height={43} alt="Max Autolytics Logo" />
-            <Image src="/images/vitality-logo.avif" width={320} height={31} alt="Vitality Logo" />
-            <Image src="/images/cost-my-formula-logo.png" width={320} height={52} alt="Cost My Formula Logo" />
-            <Image src="/images/jc-max-consulting-logo.png" width={320} height={36} alt="JC Max Consulting Logo" />
-            <Image src="/images/shurhold-industries-logo.png" width={320} height={33} alt="Shurhold Industries Logo" />
-            <Image src="/images/dash-logo.png" width={206} height={40} alt="Dash Logo" />
-            <Image
-              src="/images/morgana-magick-spells-logo.webp"
-              width={206}
-              height={40}
-              alt="Morgana Magick Spells Logo"
-            />
-          </div>
+          <Marquee>
+            <MarqueeFade side="left" />
+            <MarqueeFade side="right" />
+            <MarqueeContent
+              style={{
+                filter: "invert(63%) sepia(25%) saturate(357%) hue-rotate(192deg) brightness(89%) contrast(98%)",
+              }}
+            >
+              <MarqueeItem className="mx-6 w-36">
+                <Image src="/images/maven-lane-logo.png" width={320} height={81} alt="Maven Lane Logo" />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
+                <Image src="/images/max-autolytics-logo.png" width={320} height={43} alt="Max Autolytics Logo" />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
+                <Image src="/images/vitality-logo.avif" width={320} height={31} alt="Vitality Logo" />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
+                <Image src="/images/cost-my-formula-logo.png" width={320} height={52} alt="Cost My Formula Logo" />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
+                <Image src="/images/jc-max-consulting-logo.png" width={320} height={36} alt="JC Max Consulting Logo" />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
+                <Image
+                  src="/images/shurhold-industries-logo.png"
+                  width={320}
+                  height={33}
+                  alt="Shurhold Industries Logo"
+                />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
+                <Image src="/images/dash-logo.png" width={206} height={40} alt="Dash Logo" />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
+                <Image
+                  src="/images/morgana-magick-spells-logo.webp"
+                  width={206}
+                  height={40}
+                  alt="Morgana Magick Spells Logo"
+                />
+              </MarqueeItem>
+            </MarqueeContent>
+          </Marquee>
         </div>
       </section>
       <section className="bg-muted w-screen gap-6 pt-16 pb-12 max-md:!px-0">
@@ -177,7 +202,7 @@ export default function Home() {
               Learn about Shopify bot traffic, and how it can damage your business.
             </p>
           </div>
-          <Card className="overflow-hidden !pb-0">
+          <Card className="overflow-hidden !pb-0 shadow-none max-md:rounded-none">
             <CardContent className="p-0 !pb-0">
               <h3 className="px-6 text-base font-bold">How does this affect my business?</h3>
               <div>
@@ -189,7 +214,7 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <FeatureCard
               title="Inflated Marketing Bills"
               description="Bots inject fake emails into your marketing platforms like Klaviyo and MailChimp, forcing you to pay for profiles that will never convert. These fake subscribers bloat your lists and drain your budget month after month."
@@ -299,7 +324,7 @@ export default function Home() {
               }}
             />
           </div>
-          <Card className="overflow-hidden !pb-0">
+          <Card className="overflow-hidden !pb-0 max-md:rounded-none max-md:shadow-none">
             <CardContent className="p-0 !pb-0">
               <h3 className="px-6 text-base font-bold">The Bot Attack Pattern</h3>
               <div>
@@ -309,11 +334,11 @@ export default function Home() {
                     events to simulate high-intent users. This might sound familiar to you:
                   </p>
                 </div>
-                <div className="max-lg:divide-border pt-4 max-lg:divide-y">
+                <div className="pt-4">
                   {ATTACK_STEPS.map((step, index) => (
                     <div
                       key={step.number}
-                      className="group px-8 py-1 transition-colors duration-200 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                      className="group px-8 py-1 transition-colors duration-200 hover:bg-slate-50 max-md:mt-0 dark:hover:bg-slate-800/50"
                     >
                       <div className="flex gap-6">
                         <div className="-mb-5 flex flex-col items-center gap-2 pt-1">
@@ -326,7 +351,7 @@ export default function Home() {
                             </div>
                           </div>
                           {index < ATTACK_STEPS.length - 1 && (
-                            <div className={`h-12 w-0.5 bg-gradient-to-b ${step.color} -translate-y-2 max-lg:hidden`} />
+                            <div className={`h-12 w-0.5 bg-gradient-to-b max-md:h-24 ${step.color} -translate-y-2`} />
                           )}
                         </div>
                         <div className="flex-1">
@@ -337,7 +362,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <div className="border-border mt-8 border-t bg-stone-200 px-8 py-6">
+                <div className="border-border mt-8 border-t bg-stone-200 px-8 py-6 max-md:rounded-none">
                   <p className="text-xs text-black">
                     <span className="font-semibold">Why This Matters:</span> Understanding these patterns helps you
                     better protect your business and maintain accurate analytics.
@@ -346,7 +371,7 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
-          <Card className="overflow-hidden !pb-0">
+          <Card className="overflow-hidden !pb-0 max-md:rounded-none max-md:shadow-none">
             <CardContent className="p-0 pb-4">
               <h3 className="px-6 text-base font-bold">Why Standard Defenses Fail</h3>
               <div>
@@ -390,14 +415,13 @@ export default function Home() {
           </Card>
         </div>
       </section>
-      <section className="relative -mt-20 w-screen gap-6 overflow-hidden bg-slate-900 pt-20 pb-12">
-        <div className="pointer-events-none absolute top-0 right-0 h-[800px] w-[800px] translate-x-1/3 -translate-y-1/2 rounded-full bg-blue-600/10 blur-3xl" />
+      <section className="relative -mt-20 w-screen gap-6 overflow-hidden bg-white pt-20 pb-12">
         <div className="fade-in-0 zoom-in-95 animate-in z-50 mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="z-50 flex flex-col">
             <h2 className="text-lg font-bold text-indigo-500" id="discovery-solution">
               Our solution
             </h2>
-            <p className="fade-in-0 zoom-in-95 animate-in text-sm text-white/80 duration-700">
+            <p className="fade-in-0 zoom-in-95 animate-in text-sm duration-700">
               Learn about how we solve the ever-growing problem of Shopify bot traffic.
             </p>
           </div>
@@ -426,13 +450,13 @@ export default function Home() {
               ].map(({ icon: Icon, color, title, desc }) => (
                 <div key={title} className="flex gap-5">
                   <div
-                    className={`flex !size-8 shrink-0 items-center justify-center rounded-xl bg-${color}-500/20 text-${color}-400`}
+                    className={`flex !size-8 shrink-0 items-center justify-center rounded-xl bg-blue-500/20 text-blue-600`}
                   >
                     <Icon className="size-4" />
                   </div>
                   <div>
-                    <h4 className="mb-2 text-base font-bold text-white">{title}</h4>
-                    <p className="text-sm text-slate-400">{desc}</p>
+                    <h4 className="mb-2 text-base font-bold">{title}</h4>
+                    <p className="text-muted-foreground text-sm">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -511,7 +535,7 @@ export default function Home() {
               Enterprise-grade protection at a pilot rate in exchange for helping us build our case studies.
             </p>
           </div>
-          <div className="w-screen max-w-7xl text-center">
+          <div className="max-w-7xl text-center md:w-screen">
             {/* The Offer Card */}
             <div className="hover:shadow-3xl relative max-w-xl overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl transition-shadow duration-300">
               {/* The "Deal" Badge */}

@@ -20,7 +20,7 @@ export default function SiteScanPage() {
           Use our <strong>free</strong> site scan!
         </Badge>
         <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Scan Your Site</h1>
-        <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700 lg:whitespace-nowrap">
+        <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700 max-lg:px-8 lg:whitespace-nowrap">
           Discover what your site uses and what it&apos;s missing to stop Shopify bot traffic.
         </p>
         <Suspense fallback={<div className="h-[432px] w-full" />}>

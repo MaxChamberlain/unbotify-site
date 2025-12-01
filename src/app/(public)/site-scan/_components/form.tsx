@@ -93,7 +93,7 @@ export default function Form() {
             exit={{ opacity: 0, scale: 1.05 }}
             className="w-full"
           >
-            <Card className="relative flex h-[300px] flex-col items-center justify-center overflow-hidden border-slate-800 bg-slate-900 font-mono text-green-400 shadow-2xl">
+            <Card className="relative flex h-[300px] flex-col items-center justify-center overflow-hidden border-slate-800 bg-slate-900 font-mono text-green-400 shadow-2xl max-md:rounded-none max-md:shadow-none">
               {/* Scanline Effect */}
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] opacity-20"></div>
 
@@ -107,7 +107,7 @@ export default function Form() {
         ) : showResults && data && !scanWebsite.data?.success ? (
           // ERROR STATE
           <motion.div key="error" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-            <Card className="gap-0 overflow-hidden border-2 border-red-100 !p-0">
+            <Card className="gap-0 overflow-hidden border-2 border-red-100 !p-0 max-md:rounded-none max-md:shadow-none">
               <div className="flex items-center justify-center gap-2 bg-blue-500 p-3 text-center font-bold tracking-wider text-white uppercase">
                 <ShieldCheck className="size-5" /> Unable to scan site
               </div>
@@ -145,7 +145,7 @@ export default function Form() {
             animate={{ opacity: 1, y: 0 }}
             className="w-full"
           >
-            <Card className="gap-0 overflow-hidden border-2 border-yellow-100 !p-0">
+            <Card className="gap-0 overflow-hidden border-2 border-yellow-100 !p-0 max-md:rounded-none max-md:shadow-none">
               <div className="flex items-center justify-center gap-2 bg-yellow-500 p-3 text-center font-bold tracking-wider text-white uppercase">
                 <AlertTriangle className="size-5" /> Not On Shopify
               </div>
@@ -186,7 +186,7 @@ export default function Form() {
           <motion.div key="success" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full">
             <Card
               className={cn(
-                "gap-0 overflow-hidden border-2 !p-0",
+                "gap-0 overflow-hidden border-2 !p-0 max-md:rounded-none max-md:shadow-none",
                 isVulnerable ? "border-red-100" : "border-green-100",
               )}
             >
@@ -385,7 +385,7 @@ export default function Form() {
             exit={{ opacity: 0, y: -10 }}
             className="w-full"
           >
-            <Card className="border-muted shadow-lg">
+            <Card className="border-muted shadow-lg max-md:rounded-none max-md:shadow-none">
               <CardHeader>
                 <CardTitle>Inspect Store Vulnerability</CardTitle>
               </CardHeader>

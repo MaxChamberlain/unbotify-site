@@ -29,7 +29,7 @@ type Props = {
 export default function FeatureCard({ title, description, image, features, link }: Props) {
   return (
     <Link href={link.href}>
-      <Card className="group h-full w-screen overflow-hidden select-none max-lg:max-w-md max-sm:max-w-sm md:w-full lg:pt-0">
+      <Card className="group h-full w-screen overflow-hidden select-none max-lg:max-w-md max-md:rounded-none max-md:shadow-none max-sm:max-w-none max-sm:max-w-sm md:w-full lg:pt-0">
         <div className="bg-muted relative flex h-84 w-full items-center justify-center overflow-hidden rounded-2xl border-8 border-white px-12 transition-all duration-300 group-hover:h-72 max-lg:hidden">
           <Image
             src={image.src}

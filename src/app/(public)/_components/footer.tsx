@@ -13,7 +13,7 @@ export default function Footer() {
               <span className="text-xl font-bold">Unbotify</span>
             </Link>
             <p className="text-sm text-gray-400">
-              Unbotify manages your Web Application Firewall and Bot Protection, stopping malicious traffic from
+              Unbotify manages your Web Application Firewall (WAF) and Bot Protection, stopping malicious traffic from
               touching your site.
             </p>
             <div className="flex space-x-4 pt-2" />
