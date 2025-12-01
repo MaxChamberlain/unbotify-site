@@ -25,7 +25,7 @@ export default function Footer() {
               <FooterLink to="/">Home</FooterLink>
               <FooterLink to="/#discovery-problem">The problem</FooterLink>
               <FooterLink to="/#discovery-solution">Our solution</FooterLink>
-              <FooterLink to="/site-scan">Scan your ite</FooterLink>
+              <FooterLink to="/site-scan">Scan your site</FooterLink>
               <FooterLink to="/contact">Apply for pilot program</FooterLink>
             </ul>
           </div>
