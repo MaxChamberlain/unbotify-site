@@ -319,6 +319,35 @@ export default function Form() {
                     </div>
                   </div>
 
+                  {data.scrapedProducts && data.scrapedProducts.length > 0 && (
+                    <div className="mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
+                      <div className="mb-3 flex items-center gap-2">
+                        <div className="flex size-6 items-center justify-center rounded-full border border-yellow-200 bg-yellow-100">
+                          <span className="text-xs">📂</span>
+                        </div>
+                        <span className="text-xs font-bold tracking-wide text-yellow-800 uppercase">
+                          Proof of Access: Last 5 Items
+                        </span>
+                      </div>
+
+                      <div className="divide-y divide-slate-100 rounded border border-yellow-100 bg-white">
+                        {data.scrapedProducts.map((product, i) => (
+                          <div key={i} className="flex items-center justify-between p-2 text-xs">
+                            <span className="max-w-[200px] truncate font-medium text-slate-700">{product.title}</span>
+                            <span className="font-mono text-slate-500">
+                              {/* Safe Price Rendering */}
+                              {isNaN(Number(product.price)) ? product.price : `$${Number(product.price).toFixed(2)}`}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <p className="mt-2 text-[10px] text-yellow-700">
+                        *Our scanner downloaded your inventory data in {data.ttfb}ms because it was exposed.
+                      </p>
+                    </div>
+                  )}
+
                   {/* DETECTED APPS */}
                   {data.detectedApps.length > 0 ? (
                     <div className="space-y-3 rounded-lg border border-red-100 bg-red-50 p-4">
@@ -352,7 +381,73 @@ export default function Form() {
                     Our scanner tool <i>is</i> a bot. If "Bot Access" is Allowed, you are not secured.
                   </p>
                 </div>
+                <div className="space-y-4 border-t border-slate-100 bg-slate-50/50 p-6">
+                  <h4 className="mb-2 text-xs font-bold tracking-wider text-slate-500 uppercase">
+                    Business Impact Analysis
+                  </h4>
 
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {/* PIXEL RISK */}
+                    <div className="rounded-lg border bg-white p-3 shadow-sm">
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-700">Pixel Pollution</span>
+                        <Badge
+                          variant={data.botAccessAllowed && data.detectedPixels.length > 0 ? "destructive" : "outline"}
+                          className="px-2 py-1 text-[10px]"
+                        >
+                          {data.detectedPixels.length} At Risk
+                        </Badge>
+                      </div>
+                      <p className="text-muted-foreground mb-2 text-xs leading-tight">
+                        Bots trigger these pixels, destroying your ad retargeting data:
+                      </p>
+                      <div className="flex flex-wrap gap-1">
+                        {data.detectedPixels.length > 0 ? (
+                          data.detectedPixels.map((p) => (
+                            <div
+                              key={p.name}
+                              className="flex items-center gap-1 rounded border bg-slate-100 px-1.5 py-0.5 text-xs text-slate-600"
+                            >
+                              {/* Ensure Image has fallback or conditional rendering if url is empty */}
+                              {p.logo_url && (
+                                <Image src={p.logo_url} width={16} height={16} alt={p.name} className="rounded-full" />
+                              )}
+                              {p.name}
+                            </div>
+                          ))
+                        ) : (
+                          <span className="text-[10px] text-slate-400 italic">No pixels detected</span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* SPAM RISK */}
+                    <div className="rounded-lg border bg-white p-3 shadow-sm">
+                      <div className="mb-2 flex items-center justify-between">
+                        <span className="text-xs font-semibold text-slate-700">Spam Vectors</span>
+                        <Badge
+                          variant={data.botAccessAllowed && data.formCount > 0 ? "destructive" : "outline"}
+                          className="px-2 py-1 text-[10px]"
+                        >
+                          {data.formCount} Vulnerable
+                        </Badge>
+                      </div>
+                      <p className="text-muted-foreground mb-2 text-xs leading-tight">
+                        Exposed forms that bots use to flood your CRM and inflate bills:
+                      </p>
+                      <div className="mt-1 flex items-center gap-2">
+                        <div className="flex-1 rounded border bg-slate-100 px-2 py-1.5 text-center text-xs">
+                          <span className="block font-bold text-slate-900">{data.formCount}</span>
+                          <span className="text-xs text-slate-500 uppercase">Forms</span>
+                        </div>
+                        <div className="flex-1 rounded border bg-slate-100 px-2 py-1.5 text-center text-xs">
+                          <span className="block font-bold text-slate-900">{data.inputCount}</span>
+                          <span className="text-xs text-slate-500 uppercase">Inputs</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
                   <Button
                     onClick={() => router.push("/contact?website=" + form.getValues("url"))}

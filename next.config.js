@@ -22,6 +22,18 @@ const config = {
       },
     ];
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "unbotify.io",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
+  },
   // This is required to support PostHog trailing slash API requests
   skipTrailingSlashRedirect: true,
 };
