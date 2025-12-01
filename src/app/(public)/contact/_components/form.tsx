@@ -97,7 +97,7 @@ export default function Form() {
             className="w-full"
             key="success"
           >
-            <Card className="w-full">
+            <Card className="w-full max-md:rounded-none max-md:shadow-none">
               <CardHeader>
                 <CardTitle>Application Received!</CardTitle>
               </CardHeader>
@@ -123,7 +123,7 @@ export default function Form() {
             className="w-full"
             key="contact"
           >
-            <Card className="w-full">
+            <Card className="w-full max-md:rounded-none max-md:shadow-none">
               <CardContent>
                 <form onSubmit={form.handleSubmit(handleSubmit)}>
                   <div className="grid w-full items-center gap-4">
