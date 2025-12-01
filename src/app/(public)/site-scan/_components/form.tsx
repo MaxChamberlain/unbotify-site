@@ -356,7 +356,7 @@ export default function Form() {
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {data.detectedApps.map((app) => (
-                          <Badge key={app} variant="destructive" className="text-sm">
+                          <Badge key={app} variant="destructive" className="px-2 py-1 text-xs">
                             {app}
                           </Badge>
                         ))}
