@@ -155,6 +155,9 @@ export default function Home() {
               }}
             >
               <MarqueeItem className="mx-6 w-36">
+                <Image src="/images/1821manmade-logo.png" width={320} height={81} alt="1821 Manmade Logo" />
+              </MarqueeItem>
+              <MarqueeItem className="mx-6 w-36">
                 <Image src="/images/maven-lane-logo.png" width={320} height={81} alt="Maven Lane Logo" />
               </MarqueeItem>
               <MarqueeItem className="mx-6 w-36">
