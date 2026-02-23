@@ -44,24 +44,13 @@ export function Navbar() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          {pathname !== "/contact" && (
-            <NavbarButton
-              variant="primary"
-              href="/contact"
-              className="flex items-center justify-center gap-2 rounded-full bg-indigo-500 text-white"
-            >
-              Join our pilot program <ArrowRight className="size-4" />
-            </NavbarButton>
-          )}
-          {pathname === "/contact" && (
-            <NavbarButton
-              variant="primary"
-              href="/"
-              className="bg-primary/80 flex items-center justify-center gap-2 rounded-full text-white"
-            >
-              Back to home <Undo2 className="size-4" />
-            </NavbarButton>
-          )}
+          <NavbarButton
+            variant="primary"
+            href="https://app.unbotify.io/auth"
+            className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
+          >
+            Go to app
+          </NavbarButton>
         </div>
       </NavBody>
       <MobileNav>
@@ -80,26 +69,13 @@ export function Navbar() {
               <span className="block">{item.name}</span>
             </a>
           ))}
-          <div className="flex w-full flex-col gap-4">
-            {pathname !== "/contact" && (
-              <NavbarButton
-                variant="primary"
-                href="/contact"
-                className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
-              >
-                Join our pilot program
-              </NavbarButton>
-            )}
-            {pathname === "/contact" && (
-              <NavbarButton
-                variant="primary"
-                href="/"
-                className="bg-primary flex items-center justify-center gap-2 text-white"
-              >
-                Back to home
-              </NavbarButton>
-            )}
-          </div>
+          <NavbarButton
+            variant="primary"
+            href="https://app.unbotify.io/auth"
+            className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
+          >
+            Go to app
+          </NavbarButton>
         </MobileNavMenu>
       </MobileNav>
     </NavbarComponent>
