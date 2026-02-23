@@ -8,15 +8,21 @@ export default function Footer() {
     <footer className="bg-indigo-950">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-          <div className="max-w-sm space-y-4">
+          <div className="flex max-w-sm flex-col gap-4">
             <Link href="/" className="flex items-center space-x-2 text-white">
               <Image src="/images/logo.png" alt="Max Integrations" width={32} height={32} />
               <span className="text-xl font-bold">Unbotify</span>
             </Link>
-            <p className="text-sm text-gray-400">
+            <p className="text-gray-400">
               Unbotify manages your Web Application Firewall (WAF) and Bot Protection, stopping malicious traffic from
               touching your site.
             </p>
+            <Link href="/privacy" className="text-gray-400">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-gray-400">
+              Terms of Service
+            </Link>
             <div className="flex space-x-4 pt-2" />
           </div>
 

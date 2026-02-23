@@ -99,8 +99,8 @@ export default function Home() {
             </h1>
           </div>
           <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-lg text-base duration-700 max-md:px-8 md:text-lg">
-            Unbotify manages your Web Application Firewall (WAF) and Bot Protection, stopping malicious traffic from
-            touching your site, dirtying your analytics, inflating your mailing lists, and hurting your ROAS.
+            Move beyond relying on static rules. Our <strong>ProofZT engine</strong> uses Statistical Variance Analysis
+            to mathematically prove human behavior in real-time, blocking sophisticated botnets that standard WAFs miss
           </p>
           <div className="fade-in-0 zoom-in-95 animate-in flex w-full duration-700 max-lg:justify-center">
             <Button
@@ -110,7 +110,7 @@ export default function Home() {
               asChild
             >
               <Link href="/site-scan">
-                <Search /> Scan your site for bot vulnerabilities
+                <Search /> Analyze your site
               </Link>
             </Button>
           </div>
@@ -133,7 +133,7 @@ export default function Home() {
             variant="outline"
             className="fade-in-0 zoom-in-95 group animate-in hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
           >
-            Secure your store with Unbotify at our pilot rate
+            Secure your store with the ProofZT engine at our pilot rate
             <ChevronRight className="transition-all duration-300 group-hover:translate-x-1" />
           </Badge>
         </Link>
@@ -141,9 +141,9 @@ export default function Home() {
       <section className="w-screen gap-6">
         <div className="fade-in-0 zoom-in-95 animate-in mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="flex flex-col">
-            <h2 className="text-lg font-bold text-indigo-500">Who uses Unbotify?</h2>
+            <h2 className="text-lg font-bold text-indigo-500">Trusted by data-driven brands.</h2>
             <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground text-sm duration-700">
-              We&apos;ve worked with a variety of clients, from startups to established companies.
+              From high-volume DTC brands to enterprise agencies, Unbotify protects the metrics that matter most.
             </p>
           </div>
           <Marquee>
@@ -161,16 +161,10 @@ export default function Home() {
                 <Image src="/images/maven-lane-logo.png" width={320} height={81} alt="Maven Lane Logo" />
               </MarqueeItem>
               <MarqueeItem className="mx-6 w-36">
-                <Image src="/images/max-autolytics-logo.png" width={320} height={43} alt="Max Autolytics Logo" />
-              </MarqueeItem>
-              <MarqueeItem className="mx-6 w-36">
                 <Image src="/images/vitality-logo.avif" width={320} height={31} alt="Vitality Logo" />
               </MarqueeItem>
               <MarqueeItem className="mx-6 w-36">
                 <Image src="/images/cost-my-formula-logo.png" width={320} height={52} alt="Cost My Formula Logo" />
-              </MarqueeItem>
-              <MarqueeItem className="mx-6 w-36">
-                <Image src="/images/jc-max-consulting-logo.png" width={320} height={36} alt="JC Max Consulting Logo" />
               </MarqueeItem>
               <MarqueeItem className="mx-6 w-36">
                 <Image
@@ -199,10 +193,11 @@ export default function Home() {
         <div className="fade-in-0 zoom-in-95 animate-in z-50 mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="z-50 flex flex-col max-md:!px-4">
             <h2 className="text-lg font-bold text-indigo-500" id="discovery-problem">
-              Understanding the problem
+              The Hidden Cost of Bots
             </h2>
             <p className="fade-in-0 zoom-in-95 animate-in text-primary text-sm duration-700">
-              Learn about Shopify bot traffic, and how it can damage your business.
+              Bots look like customers, click like customers, and cost you money like customers. But they never
+              purchase.
             </p>
           </div>
           <Card className="overflow-hidden !pb-0 shadow-none max-md:rounded-none">
@@ -211,7 +206,8 @@ export default function Home() {
               <div>
                 <div className="px-6 pb-4">
                   <p className="text-muted-foreground text-sm leading-relaxed">
-                    Bot traffic affects your marketing bills, analytics, ad spend, and operational overhead.
+                    Standard security tools only stop the bots that attack aggressively. We stop the ones that quietly
+                    drain your budget.
                   </p>
                 </div>
               </div>
@@ -219,8 +215,8 @@ export default function Home() {
           </Card>
           <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
             <FeatureCard
-              title="Inflated Marketing Bills"
-              description="Bots inject fake emails into your marketing platforms like Klaviyo and MailChimp, forcing you to pay for profiles that will never convert. These fake subscribers bloat your lists and drain your budget month after month."
+              title="Paying for Ghosts"
+              description="Bots fill your email list with fake addresses. You end up paying your email provider (like Klaviyo or Mailchimp) for thousands of 'subscribers' who don't exist."
               image={{
                 src: "/images/example-klaviyo.png",
                 alt: "Example of inflated marketing bills",
@@ -246,8 +242,8 @@ export default function Home() {
               }}
             />
             <FeatureCard
-              title="Destroyed Analytics"
-              description="When bot traffic floods your store, your conversion rates plummet and your data becomes worthless. You can't trust your metrics to make informed decisions about inventory, marketing spend, or website improvements."
+              title="Flying Blind"
+              description="You think 1,000 people visited your site today, but 400 of them were bots. You can't make good decisions when nearly half your data is a lie."
               image={{
                 src: "/images/example-analytics.png",
                 alt: "Example of destroyed analytics",
@@ -268,13 +264,13 @@ export default function Home() {
                 },
               ]}
               link={{
-                text: "Uninflate your marketing bills",
+                text: "Restore my data accuracy",
                 href: "/contact",
               }}
             />
             <FeatureCard
-              title="Wasted Ad Spend"
-              description="Marketing pixels fire on bot sessions, polluting your retargeting audiences and attribution data. You're optimizing campaigns based on fake engagement, leading to poor ROAS and misallocated budgets."
+              title="Burning Ad Money"
+              description="When a bot clicks your Facebook or Google ad, you still pay for that click. Worse, the ad platforms think that bot was a 'good visitor' and go find more of them."
               image={{
                 src: "/images/example-ad-spend.png",
                 alt: "Example of wasted ad spend",
@@ -288,7 +284,7 @@ export default function Home() {
                   text: "Your ad spend is wasted, and you're not getting the ROI you expect.",
                 },
                 {
-                  text: "Your analytics make your ads looks utterly ineffective.",
+                  text: "Your analytics make your ads look utterly ineffective.",
                 },
                 {
                   text: "You lack the data to adjust your campaigns to your customers' behavior.",
@@ -301,7 +297,7 @@ export default function Home() {
             />
             <FeatureCard
               title="Operational Overhead"
-              description="Your team wastes countless hours investigating fake orders, cleaning up email lists, and trying to separate real customers from sophisticated bot traffic that mimics genuine user behavior."
+              description="Trying to block these bots yourself is like playing Whack-a-Mole. By the time you block one IP address, the bot has already moved to a new one."
               image={{
                 src: "/images/example-operational-overhead.png",
                 alt: "Example of operational overhead",
@@ -318,7 +314,7 @@ export default function Home() {
                   text: "Your team is forced to try to fix problems that don't exist.",
                 },
                 {
-                  text: "Your customers are frustrated by the constant delays in their orders.",
+                  text: "You focus on fighting bots instead of growing your business.",
                 },
               ]}
               link={{
