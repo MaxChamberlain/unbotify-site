@@ -16,7 +16,7 @@ export default function SiteScanPage() {
   return (
     <div className="relative pb-32">
       <div className="z-50 mx-auto flex w-screen max-w-7xl flex-col items-center justify-center gap-8 pt-12">
-        <Badge className="fade-in-0 zoom-in-95 animate-in !bg-white !text-indigo-500 duration-700">
+        <Badge className="fade-in-0 zoom-in-95 animate-in !bg-white !text-orange-500 duration-700">
           Use our <strong>free</strong> site scan!
         </Badge>
         <h1 className="fade-in-0 zoom-in-95 animate-in text-4xl font-bold duration-700">Scan Your Site</h1>

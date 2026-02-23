@@ -36,7 +36,7 @@ const developmentServiceSchema = {
 export default function FullStackDevelopment() {
   return (
     <div className="flex flex-col items-center gap-20 [&_section]:px-8">
-      <section className="flex w-screen items-center justify-center gap-2 bg-gradient-to-tr from-sky-50 to-indigo-50 !px-0 py-16">
+      <section className="flex w-screen items-center justify-center gap-2 bg-gradient-to-tr from-orange-50 to-orange-100 !px-0 py-16">
         <Image
           src="/images/logo.png"
           alt="Max Integrations Logo"

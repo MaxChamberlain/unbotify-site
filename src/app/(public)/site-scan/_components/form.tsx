@@ -246,7 +246,7 @@ export default function Form() {
                     <div
                       className={cn(
                         "col-span-2 flex flex-col items-center gap-2 rounded-lg border p-3 text-center md:col-span-1",
-                        data.isUnbotifyDomain ? "border-indigo-100 bg-indigo-50" : "bg-slate-50/50",
+                        data.isUnbotifyDomain ? "border-orange-100 bg-orange-50" : "bg-slate-50/50",
                       )}
                     >
                       {data.isUnbotifyDomain ? (
@@ -259,7 +259,7 @@ export default function Form() {
                       <span className="text-xs font-bold tracking-wider text-slate-600 uppercase">Bot Firewall</span>
                       <Badge
                         variant={data.isUnbotifyDomain ? "default" : "destructive"}
-                        className={data.isUnbotifyDomain ? "!bg-indigo-500" : ""}
+                        className={data.isUnbotifyDomain ? "!bg-orange-500" : ""}
                       >
                         {data.isUnbotifyDomain ? "Active" : "Inactive"}
                       </Badge>
@@ -451,7 +451,7 @@ export default function Form() {
                 <div className="flex flex-col gap-3 border-t bg-slate-50 p-4">
                   <Button
                     onClick={() => router.push("/contact?website=" + form.getValues("url"))}
-                    className="w-full !bg-indigo-600 shadow-md shadow-indigo-100 hover:!bg-indigo-700"
+                    className="w-full !bg-orange-600 shadow-md shadow-orange-100 hover:!bg-orange-700"
                   >
                     {isVulnerable ? "Fix" : "Secure"} Vulnerabilities ($249) <ArrowRight className="ml-2 size-4" />
                   </Button>
@@ -508,7 +508,7 @@ export default function Form() {
                     </div>
                     <Button
                       type="submit"
-                      className="w-full !bg-indigo-600"
+                      className="w-full !bg-orange-600"
                       disabled={scanWebsite.isPending || !form.formState.isValid}
                     >
                       Run Security Audit <ScanLine className="ml-2 size-5" />

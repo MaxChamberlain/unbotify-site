@@ -47,7 +47,7 @@ export function Navbar() {
           <NavbarButton
             variant="primary"
             href="https://app.unbotify.io/auth"
-            className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
+            className="flex items-center justify-center gap-2 bg-orange-500 text-white"
           >
             Go to app
           </NavbarButton>
@@ -72,7 +72,7 @@ export function Navbar() {
           <NavbarButton
             variant="primary"
             href="https://app.unbotify.io/auth"
-            className="flex items-center justify-center gap-2 bg-indigo-500 text-white"
+            className="flex items-center justify-center gap-2 bg-orange-500 text-white"
           >
             Go to app
           </NavbarButton>

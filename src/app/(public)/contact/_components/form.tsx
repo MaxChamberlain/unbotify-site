@@ -107,7 +107,7 @@ export default function Form() {
                   team within 24 hours to confirm your Pilot spot.
                 </p>
                 <div className="flex w-full justify-end gap-2">
-                  <Button onClick={() => router.push("/")} className="!bg-indigo-500">
+                  <Button onClick={() => router.push("/")} className="!bg-orange-500">
                     Back to home
                   </Button>
                 </div>
@@ -199,7 +199,7 @@ export default function Form() {
                       </Select>
                       <Button
                         type="submit"
-                        className="mt-4 w-full !bg-indigo-500"
+                        className="mt-4 w-full !bg-orange-500"
                         disabled={
                           sendEmail.isPending ||
                           !(

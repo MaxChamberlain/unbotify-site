@@ -56,7 +56,7 @@ export default function FeatureCard({ title, description, image, features, link 
           <ul className="[&_li]:text-primary/80 flex flex-col gap-4 [&_li]:flex [&_li]:items-start [&_li]:gap-1 [&_li]:text-sm">
             {features.map((feature) => (
               <li key={feature.text}>
-                <CheckCircle2 className="!h-5 !w-5 flex-shrink-0 translate-y-0.5 fill-indigo-500/50 text-white" />
+                <CheckCircle2 className="!h-5 !w-5 flex-shrink-0 translate-y-0.5 fill-orange-500/50 text-white" />
                 <div>
                   {feature.text}
                   {feature.shopifyRelated && (
@@ -83,7 +83,7 @@ export default function FeatureCard({ title, description, image, features, link 
               </li>
             ))}
           </ul>
-          <p className="group/link absolute top-full flex scale-90 items-center gap-1 font-medium text-indigo-500 opacity-0 transition-all duration-300 group-hover:-translate-y-12 group-hover:scale-100 group-hover:opacity-100 max-lg:-translate-y-12 max-lg:scale-100 max-lg:opacity-100">
+          <p className="group/link absolute top-full flex scale-90 items-center gap-1 font-medium text-orange-500 opacity-0 transition-all duration-300 group-hover:-translate-y-12 group-hover:scale-100 group-hover:opacity-100 max-lg:-translate-y-12 max-lg:scale-100 max-lg:opacity-100">
             {link.text} <ChevronRight className="size-4 transition-all duration-300 group-hover/link:translate-x-1" />
           </p>
         </CardContent>

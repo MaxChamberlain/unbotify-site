@@ -32,7 +32,7 @@ const cloudflareServiceSchema = {
 export default function DiscoveryProblemPage() {
   return (
     <div className="flex flex-col items-center gap-20 [&_section]:px-8">
-      <section className="w-screen bg-gradient-to-br from-orange-50 via-fuchsia-50 to-indigo-50 !px-0 pt-32 pb-32 max-lg:flex-col md:pt-32">
+      <section className="w-screen bg-gradient-to-br from-orange-50 via-orange-100 to-orange-50 !px-0 pt-32 pb-32 max-lg:flex-col md:pt-32">
         <div className="mx-auto flex w-screen max-w-7xl justify-center gap-12">
           <div className="flex flex-2 flex-col gap-6 max-lg:text-center">
             <div className="text-5xl md:text-7xl">
@@ -76,7 +76,7 @@ export default function DiscoveryProblemPage() {
               wasting your time and resources.
             </p>
             <div className="fade-in-0 zoom-in-95 animate-in flex w-full duration-700 max-lg:justify-center">
-              <Button variant="default" size="lg" className="bg-indigo-500 hover:bg-indigo-400" asChild>
+              <Button variant="default" size="lg" className="bg-orange-500 hover:bg-orange-700" asChild>
                 <Link href="/contact">I want to fix this problem</Link>
               </Button>
             </div>

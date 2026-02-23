@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function Services() {
   return (
     <div className="flex flex-col items-center gap-20 [&_section]:px-8">
-      <section className="w-screen bg-gradient-to-br from-orange-50 via-fuchsia-50 to-indigo-50 pt-32 pb-32 max-lg:flex-col md:pt-32">
+      <section className="w-screen bg-gradient-to-br from-orange-50 via-orange-100 to-orange-50 pt-32 pb-32 max-lg:flex-col md:pt-32">
         <div className="flex flex-2 flex-col items-center gap-12 text-center">
           <div className="text-5xl md:text-7xl">
             <h1 className="fade-in-0 zoom-in-95 animate-in font-bold duration-700">
@@ -53,7 +53,7 @@ export default function Services() {
             </Link>{" "}
             about anything else.
           </p>
-          <Button variant="default" size="lg" className="bg-indigo-500 hover:bg-indigo-400" asChild>
+          <Button variant="default" size="lg" className="bg-orange-500 hover:bg-orange-700" asChild>
             <Link href="/contact?type=general">Contact us about something else</Link>
           </Button>
         </div>
@@ -61,7 +61,7 @@ export default function Services() {
       <section className="w-screen gap-6 pt-16 pb-12 max-md:!px-0">
         <div className="fade-in-0 zoom-in-95 animate-in z-50 mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="z-50 flex flex-col max-md:!px-4">
-            <h2 className="text-xl font-bold text-indigo-500">Take a look at our core services!</h2>
+            <h2 className="text-xl font-bold text-orange-500">Take a look at our core services!</h2>
             <p className="fade-in-0 zoom-in-95 animate-in text-primary text-sm duration-700">
               Don&apos;t see what you need?{" "}
               <Link href="/contact?type=general" className="hover:text-primary underline transition-colors">

@@ -42,7 +42,7 @@ export default function PrivacyPage() {
             We do not have a designated Data Protection Officer (DPO) but remain fully committed to addressing your
             privacy concerns. Should you have any questions or require further information about how we manage personal
             information, please feel free to contact us at{" "}
-            <Link href="mailto:info@unbotify.io" className="text-indigo-500 hover:underline">
+            <Link href="mailto:info@unbotify.io" className="text-orange-500 hover:underline">
               info@unbotify.io
             </Link>{" "}
             or +1-US 9706946727.
@@ -155,7 +155,7 @@ export default function PrivacyPage() {
         </p>
         <p className="text-sm leading-relaxed text-zinc-700">
           For any queries or concerns about how we share and disclose personal information, please reach out to us at{" "}
-          <Link href="mailto:info@unbotify.io" className="text-indigo-500 hover:underline">
+          <Link href="mailto:info@unbotify.io" className="text-orange-500 hover:underline">
             info@unbotify.io
           </Link>{" "}
           or +1-US 9706946727.
@@ -176,7 +176,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-15-right-of-access/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 15 GDPR
             </Link>
@@ -188,7 +188,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-16-right-to-rectification/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 16 GDPR
             </Link>
@@ -200,7 +200,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-17-right-to-be-forgotten/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 17 GDPR
             </Link>
@@ -212,7 +212,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-18-right-to-restriction-of-processing/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 18 GDPR
             </Link>
@@ -224,7 +224,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-20-right-to-data-portability/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 20 GDPR
             </Link>
@@ -236,7 +236,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-21-right-to-object/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 21 GDPR
             </Link>
@@ -248,7 +248,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-7-how-to-get-consent-to-collect-personal-data/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 7(3) GDPR
             </Link>
@@ -260,7 +260,7 @@ export default function PrivacyPage() {
             <Link
               href="https://gdpr.eu/article-77-right-to-lodge-a-complaint-with-a-supervisory-authority/"
               target="_blank"
-              className="text-indigo-500 hover:underline"
+              className="text-orange-500 hover:underline"
             >
               Art. 77 GDPR
             </Link>
@@ -271,7 +271,7 @@ export default function PrivacyPage() {
         <h3 className="text-base font-semibold">Exercising your rights</h3>
         <p className="text-sm leading-relaxed text-zinc-700">
           To exercise any of these rights, please contact us at{" "}
-          <Link href="mailto:info@unbotify.io" className="text-indigo-500 hover:underline">
+          <Link href="mailto:info@unbotify.io" className="text-orange-500 hover:underline">
             info@unbotify.io
           </Link>{" "}
           or +1-US 9706946727. We will respond to your request in accordance with applicable data protection laws and
@@ -335,7 +335,7 @@ export default function PrivacyPage() {
         <p className="text-sm leading-relaxed text-zinc-700">
           To appeal a decision we may make regarding your request, please contact us within 60 days of receiving our
           response by emailing{" "}
-          <Link href="mailto:info@unbotify.io" className="text-indigo-500 hover:underline">
+          <Link href="mailto:info@unbotify.io" className="text-orange-500 hover:underline">
             info@unbotify.io
           </Link>{" "}
           or calling 9706946727. In your appeal request, please include your original request, the date of our response,
@@ -397,7 +397,7 @@ export default function PrivacyPage() {
         <h3 className="text-base font-semibold">H. Submitting requests</h3>
         <p className="text-sm leading-relaxed text-zinc-700">
           You may submit your request by sending an email to{" "}
-          <Link href="mailto:info@unbotify.io" className="text-indigo-500 hover:underline">
+          <Link href="mailto:info@unbotify.io" className="text-orange-500 hover:underline">
             info@unbotify.io
           </Link>{" "}
           or by phone at +1-US 9706946727. We will compare the information you submit to us with the information we have
@@ -409,7 +409,7 @@ export default function PrivacyPage() {
           We only process sensitive personal data with your prior consent and only for specific purposes that are
           clearly disclosed at the time of collection. You may withdraw your consent at any time by submitting your
           request through the link on our website or by email to{" "}
-          <Link href="mailto:info@unbotify.io" className="text-indigo-500 hover:underline">
+          <Link href="mailto:info@unbotify.io" className="text-orange-500 hover:underline">
             info@unbotify.io
           </Link>
           .

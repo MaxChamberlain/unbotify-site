@@ -139,7 +139,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                   exit={{ opacity: 0 }}
                   transition={{ opacity: { duration: 0.3 } }}
                   layoutId="hovered"
-                  className="absolute inset-0 h-full w-full rounded-full bg-gradient-to-r from-indigo-500/20 to-sky-500/20"
+                  className="absolute inset-0 h-full w-full rounded-full bg-gradient-to-r from-orange-500/20 to-sky-500/20"
                 />
               )}
             </AnimatePresence>

@@ -37,7 +37,7 @@ const shopifyServiceSchema = {
 export default function ShopifyDevelopment() {
   return (
     <div className="flex flex-col items-center gap-20 [&_section]:px-8">
-      <section className="w-screen bg-gradient-to-br from-orange-50 via-fuchsia-50 to-indigo-50 !px-0 pt-32 pb-32 max-lg:flex-col md:pt-32">
+      <section className="w-screen bg-gradient-to-br from-orange-50 via-orange-100 to-orange-50 !px-0 pt-32 pb-32 max-lg:flex-col md:pt-32">
         <div className="mx-auto flex w-screen max-w-7xl justify-center gap-12">
           <div className="flex flex-2 flex-col gap-6 max-lg:text-center">
             <div className="text-5xl md:text-7xl">
@@ -65,7 +65,7 @@ export default function ShopifyDevelopment() {
               , we can engineer a solution <strong>made for your store</strong>.
             </p>
             <div className="fade-in-0 zoom-in-95 animate-in flex w-full duration-700 max-lg:justify-center">
-              <Button variant="default" size="lg" className="bg-indigo-500 hover:bg-indigo-400" asChild>
+              <Button variant="default" size="lg" className="bg-orange-500 hover:bg-orange-700" asChild>
                 <Link href="/contact?type=shopify&subType=general">Contact us about this service</Link>
               </Button>
             </div>
@@ -89,7 +89,7 @@ export default function ShopifyDevelopment() {
             Have a theme you love, but there&apos;s just something missing? We can add new features to your theme,
             change its functionality, or even just modify that one thing that&apos;s been bugging you for so long.
           </p>
-          <Button variant="link" className="!p-0 !text-indigo-500" asChild>
+          <Button variant="link" className="!p-0 !text-orange-500" asChild>
             <Link href="/contact?type=shopify&subType=theme">
               Ask us about theme development
               <ChevronRight className="h-4 w-4" />
@@ -112,7 +112,7 @@ export default function ShopifyDevelopment() {
             and integrations right into your Shopify admin panel to streamline your workflows, automate repetitive
             tasks, and give you powerful new capabilities tailored to your business needs.
           </p>
-          <Button variant="link" className="!p-0 !text-indigo-500" asChild>
+          <Button variant="link" className="!p-0 !text-orange-500" asChild>
             <Link href="/contact?type=shopify&subType=app">
               Ask us about custom admin apps
               <ChevronRight className="h-4 w-4" />
@@ -141,7 +141,7 @@ export default function ShopifyDevelopment() {
             is placed, or when a customer creates an account. We can then use these events to trigger actions in other
             apps, or even just log them for your own records.
           </p>
-          <Button variant="link" className="!p-0 !text-indigo-500" asChild>
+          <Button variant="link" className="!p-0 !text-orange-500" asChild>
             <Link href="/contact?type=shopify&subType=event-integration">
               Ask us about event integration
               <ChevronRight className="h-4 w-4" />
@@ -165,7 +165,7 @@ export default function ShopifyDevelopment() {
             <p className="text-muted-foreground text-lg leading-relaxed">
               We can build a custom solution for your Shopify store. Whatever you&apos;re missing, we&apos;ll build it.
             </p>
-            <Button variant="link" className="!p-0 !text-indigo-500" asChild>
+            <Button variant="link" className="!p-0 !text-orange-500" asChild>
               <Link href="/contact?type=shopify&subType=general">
                 Let us add what you&apos;re missing
                 <ChevronRight className="h-4 w-4" />

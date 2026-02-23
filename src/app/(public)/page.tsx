@@ -89,7 +89,7 @@ export default function Home() {
               <span
                 className="fade-in-0 zoom-in-95 animate-in inline-block pb-1 font-bold duration-700"
                 style={{
-                  background: "-webkit-linear-gradient(-35deg, #8B5CF6, #F472B6, #60A5FA)",
+                  background: "-webkit-linear-gradient(-35deg, #F59E0B, #FBBF24, #F59E0B)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}
@@ -106,7 +106,7 @@ export default function Home() {
             <Button
               variant="default"
               size="lg"
-              className="w-full max-w-[20rem] bg-indigo-500 hover:bg-indigo-400"
+              className="w-full max-w-[20rem] bg-orange-500 hover:bg-orange-700"
               asChild
             >
               <Link href="/site-scan">
@@ -141,7 +141,7 @@ export default function Home() {
       <section className="w-screen gap-6">
         <div className="fade-in-0 zoom-in-95 animate-in mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="flex flex-col">
-            <h2 className="text-lg font-bold text-indigo-500">Trusted by data-driven brands.</h2>
+            <h2 className="text-lg font-bold text-orange-500">Trusted by data-driven brands.</h2>
             <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground text-sm duration-700">
               From high-volume DTC brands to enterprise agencies, Unbotify protects the metrics that matter most.
             </p>
@@ -192,7 +192,7 @@ export default function Home() {
       <section className="bg-muted w-screen gap-6 pt-16 pb-12 max-md:!px-0">
         <div className="fade-in-0 zoom-in-95 animate-in z-50 mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="z-50 flex flex-col max-md:!px-4">
-            <h2 className="text-lg font-bold text-indigo-500" id="discovery-problem">
+            <h2 className="text-lg font-bold text-orange-500" id="discovery-problem">
               The Hidden Cost of Bots
             </h2>
             <p className="fade-in-0 zoom-in-95 animate-in text-primary text-sm duration-700">
@@ -417,7 +417,7 @@ export default function Home() {
       <section className="relative -mt-20 w-screen gap-6 overflow-hidden bg-white pt-20 pb-12">
         <div className="fade-in-0 zoom-in-95 animate-in z-50 mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="z-50 flex flex-col">
-            <h2 className="text-lg font-bold text-indigo-500" id="discovery-solution">
+            <h2 className="text-lg font-bold text-orange-500" id="discovery-solution">
               Our solution
             </h2>
             <p className="fade-in-0 zoom-in-95 animate-in text-sm duration-700">
@@ -529,7 +529,7 @@ export default function Home() {
       <section className="relative w-screen gap-6 overflow-hidden pb-12">
         <div className="fade-in-0 zoom-in-95 animate-in z-50 mx-auto flex w-full max-w-7xl flex-col gap-6 duration-700">
           <div className="z-50 flex flex-col text-start">
-            <h2 className="text-lg font-bold text-indigo-500">Mutual benefit pilot program</h2>
+            <h2 className="text-lg font-bold text-orange-500">Mutual benefit pilot program</h2>
             <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground text-sm duration-700">
               Enterprise-grade protection at a pilot rate in exchange for helping us build our case studies.
             </p>
@@ -577,7 +577,7 @@ export default function Home() {
                 </div>
 
                 {/* CTA Button */}
-                <Button asChild className="rounded-full bg-indigo-500">
+                <Button asChild className="rounded-full bg-orange-500">
                   <Link href="/contact" className="flex items-center gap-2">
                     Apply for Pilot Program
                     <ArrowRight className="h-4 w-4" />
