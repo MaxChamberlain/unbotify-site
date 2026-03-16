@@ -24,13 +24,7 @@ export default function ContactPage() {
         </h1>
         <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-2xl text-center duration-700 max-md:px-8 lg:whitespace-nowrap">
           Stop paying for fake profiles. Secure your spot in our managed WAF pilot for{" "}
-          <span className="relative font-bold text-slate-900">
-            $249/mo{" "}
-            <span className="text-muted-foreground absolute -bottom-6 left-0 scale-75 font-normal line-through max-md:-bottom-2">
-              $499/mo
-            </span>
-          </span>
-          .
+          <span className="relative font-bold text-slate-900">$249/mo</span>.
         </p>
         <Suspense fallback={<div className="h-[432px] w-full" />}>
           <Form />

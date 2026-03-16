@@ -84,23 +84,13 @@ export default function Home() {
         <div className="flex flex-2 flex-col gap-6 max-lg:text-center">
           <div className="text-5xl md:text-7xl">
             <h1 className="fade-in-0 zoom-in-95 animate-in font-bold duration-700">
-              Stopping <p className="hidden">Shopify</p> bot traffic
-              <br />
-              <span
-                className="fade-in-0 zoom-in-95 animate-in inline-block pb-1 font-bold duration-700"
-                style={{
-                  background: "-webkit-linear-gradient(-35deg, #F59E0B, #FBBF24, #F59E0B)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
-              >
-                at the door
-              </span>
+              Network-layer bot defense for Shopify
             </h1>
           </div>
           <p className="fade-in-0 zoom-in-95 animate-in text-muted-foreground max-w-lg text-base duration-700 max-md:px-8 md:text-lg">
-            Move beyond relying on static rules. Our <strong>ProofZT engine</strong> uses Statistical Variance Analysis
-            to mathematically prove human behavior in real-time, blocking sophisticated botnets that standard WAFs miss
+            Unbotify ProofZT, ASN-level Statistical Variance Analysis, and edge-level challenge logic to distinguish
+            real shoppers from sophisticated residential-proxy botnets in realtime, before they inflate marketing costs,
+            corrupt attribution, and trigger fake checkout activity.
           </p>
           <div className="fade-in-0 zoom-in-95 animate-in flex w-full duration-700 max-lg:justify-center">
             <Button
@@ -133,7 +123,7 @@ export default function Home() {
             variant="outline"
             className="fade-in-0 zoom-in-95 group animate-in hover:bg-muted flex cursor-pointer items-center gap-4 rounded-full px-4 py-2 text-sm font-extralight transition-colors duration-700 select-none"
           >
-            Secure your store with the ProofZT engine at our pilot rate
+            Secure your store with Unbotify now
             <ChevronRight className="transition-all duration-300 group-hover:translate-x-1" />
           </Badge>
         </Link>
@@ -537,22 +527,14 @@ export default function Home() {
           <div className="max-w-7xl text-center md:w-screen">
             {/* The Offer Card */}
             <div className="hover:shadow-3xl relative max-w-xl overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl transition-shadow duration-300">
-              {/* The "Deal" Badge */}
-              <div className="absolute top-0 right-0 z-10 rounded-bl-2xl bg-blue-600 px-6 py-2 text-xs font-bold text-white">
-                50% OFF FOR 3 MONTHS
-              </div>
-
               <div className="p-8 md:p-14">
                 {/* Price Anchor */}
                 <div className="mb-6 flex flex-col items-center justify-center gap-2">
-                  <span className="text-base font-medium text-gray-400 line-through decoration-red-400/50 decoration-2">
-                    $499/mo
-                  </span>
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl font-extrabold tracking-tight text-gray-900">$249</span>
                     <span className="text-xl font-medium text-gray-500">/mo</span>
                   </div>
-                  <p className="mt-2 rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600">
+                  <p className="mt-2 rounded-full bg-orange-50 px-3 py-1 text-sm font-medium text-orange-600">
                     Pilot Pricing
                   </p>
                 </div>
