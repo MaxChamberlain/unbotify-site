@@ -565,8 +565,6 @@ export default function Home() {
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
-
-                <p className="mt-6 text-sm text-gray-400">Limited spots available for Q4 2025.</p>
               </div>
             </div>
           </div>
