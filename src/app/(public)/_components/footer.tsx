@@ -5,29 +5,29 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-orange-950">
+    <footer className="bg-orange-50">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div className="flex max-w-sm flex-col gap-4">
             <Link href="/" className="flex items-center space-x-2 text-white">
               <Image src="/images/logo.png" alt="Max Integrations" width={32} height={32} />
-              <span className="text-xl font-bold">Unbotify</span>
+              <span className="text-xl font-bold text-black">Unbotify</span>
             </Link>
-            <p className="text-gray-400">
+            <p className="text-gray-600">
               Unbotify manages your Web Application Firewall (WAF) and Bot Protection, stopping malicious traffic from
               touching your site.
             </p>
-            <Link href="/privacy" className="text-gray-400">
+            <Link href="/privacy" className="text-gray-600 transition-colors hover:text-black">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-gray-400">
+            <Link href="/terms" className="text-gray-600 transition-colors hover:text-black">
               Terms of Service
             </Link>
             <div className="flex space-x-4 pt-2" />
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold tracking-wider text-white uppercase">Quick Links</h3>
+            <h3 className="text-sm font-semibold tracking-wider text-black uppercase">Quick Links</h3>
             <ul className="mt-4 space-y-3">
               <FooterLink to="/">Home</FooterLink>
               <FooterLink to="/#discovery-problem">The problem</FooterLink>
@@ -37,13 +37,13 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold tracking-wider text-white uppercase">Contact Us</h3>
+            <h3 className="text-sm font-semibold tracking-wider text-black uppercase">Contact Us</h3>
             <ul className="mt-4 space-y-3">
               {/* Email */}
               <li>
                 <a
                   href="mailto:info@unbotify.io"
-                  className="flex items-center gap-2 text-gray-400 transition-colors hover:text-white"
+                  className="flex items-center gap-2 text-gray-600 transition-colors hover:text-black"
                 >
                   <Mail className="h-4 w-4 shrink-0" />
                   <span>info@unbotify.io</span>
@@ -52,7 +52,7 @@ export default function Footer() {
 
               {/* Location - Adds "Real Company" Trust */}
               <li>
-                <div className="flex items-start gap-2 text-gray-400">
+                <div className="flex items-start gap-2 text-gray-600">
                   <MapPin className="mt-1 h-4 w-4 shrink-0" />
                   <span>
                     Castle Rock, CO
@@ -74,14 +74,14 @@ export default function Footer() {
 
 const FooterLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
   <li>
-    <Link href={to} className="text-gray-400 transition-colors hover:text-white">
+    <Link href={to} className="text-gray-600 transition-colors hover:text-black">
       {children}
     </Link>
   </li>
 );
 
 const SocialLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 transition-colors hover:text-white">
+  <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 transition-colors hover:text-black">
     {children}
   </a>
 );
